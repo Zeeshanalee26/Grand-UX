@@ -1,0 +1,39 @@
+.section-4 {
+  background: #ffffff;
+  margin-top: 100px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.logo-container {
+  width: 912px;
+  height: 42px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 21px;
+}
+
+.logo-track {
+  display: flex;
+  position: relative;
+}
+
+.logo {
+  flex: 0 0 200px;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.logo img {
+  width: 100%;
+  height: 40px;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: grayscale(100%);
+  transition: all 0.3s ease;
+}
+
+.logo img:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
