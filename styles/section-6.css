@@ -1,0 +1,284 @@
+.section-6 {
+  width: 1440px;
+  height: 3158px;
+  background-color: #fff;
+  padding: 0 140px 140px 140px;
+}
+
+.section-6 .container {
+  width: 1160px;
+  height: 2903px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.section-6-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 15px;
+  text-align: center;
+  max-width: 1160px;
+  max-height: 204px;
+  margin-bottom: 64px;
+}
+
+.section-6 .label {
+  font-size: 30px;
+  line-height: 24px;
+  font-weight: 460;
+  color: rgba(41, 41, 41, 1);
+  margin-bottom: 40px;
+  display: block;
+}
+
+.section-6 .title {
+  max-width: 634px;
+  max-height: 140px;
+  font-size: 54px;
+  line-height: 70px;
+  font-weight: 460;
+  color: #000;
+  margin-bottom: 64px;
+  text-align: left;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 456px 642px;
+  gap: 62px;
+  width: 1160px;
+}
+
+.project-card:nth-child(1) {
+  width: 456px;
+  height: 587px;
+  grid-column: 1;
+}
+
+.project-card:nth-child(1) .project-image {
+  width: 456px;
+  height: 381px;
+  object-fit: cover;
+}
+
+.project-card:nth-child(2) {
+  width: 642px;
+  height: 795px;
+  grid-column: 2;
+}
+
+.project-card:nth-child(2) .project-image {
+  width: 642px;
+  height: 620px;
+  object-fit: cover;
+}
+
+.project-card:nth-child(3) {
+  width: 1040px;
+  height: 775px;
+  grid-column: 1;
+  margin-left: 120px;
+  margin-bottom: 120px;
+}
+
+.project-card:nth-child(3) .project-image {
+  width: 1040px;
+  height: 600px;
+  object-fit: cover;
+}
+
+.project-card:nth-child(4) {
+  width: 1160px;
+  height: 825px;
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+.project-card:nth-child(4) .project-image {
+  width: 1160px;
+  height: 650px;
+  object-fit: cover;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  position: relative;
+  overflow: visible;
+}
+
+.project-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 1.2s cubic-bezier(0.33, 1, 0.68, 1),
+              opacity 1.2s cubic-bezier(0.33, 1, 0.68, 1);
+  cursor: none;
+}
+
+.project-image-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(1);
+  transform-origin: top;
+  transition: transform 1.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.project-image {
+  position: relative;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 1.6s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 1.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Animation classes */
+.image-container-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.background-visible {
+  transform: scaleY(0);
+}
+
+.image-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 456px;
+  max-height: 174px;
+}
+
+.project-info h3 {
+  font-size: 36px;
+  line-height: 43.2px;
+  font-weight: 460;
+  color: #000;
+  margin: 0;
+  position: relative;
+  width: fit-content;
+  display: inline-block;
+}
+
+.project-info h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  transition: width 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.project-card:hover .project-info h3::after {
+  width: 100%;
+}
+
+.project-info p {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 460;
+  color: rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+}
+
+.tag {
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 2px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 999px;
+}
+
+.custom-cursor {
+  width: 140px;
+  height: 140px;
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.custom-cursor-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-cursor-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(20, 21, 21, 0.65);
+  border-radius: 50%;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.custom-cursor-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.custom-cursor.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.custom-cursor.active .custom-cursor-circle {
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.custom-cursor.active .custom-cursor-text {
+  opacity: 1;
+}
+
+.project-image-container {
+  cursor: none;
+}
+
+/* Add hover effect */
+.project-image-container:hover .custom-cursor-circle {
+  transform: scale(1.1);
+}

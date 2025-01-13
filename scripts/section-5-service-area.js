@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const timerFill = serviceItems[index].querySelector('.timer-fill');
         timerFill.style.transition = 'none';
         timerFill.style.width = '0';
-        void timerFill.offsetWidth; // Force reflow
+        void timerFill.offsetWidth; 
     }
   
     function switchSlide(newIndex, immediate = false) {
@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, SLIDE_DURATION);
     }
   
-    // Event Listeners
     serviceItems.forEach((item, index) => {
         item.addEventListener('mouseenter', () => {
             isHovered = true;
@@ -93,6 +92,104 @@ document.addEventListener('DOMContentLoaded', function() {
             startAutoplay();
         });
     });
+  
+    const serviceObserverOptions = {
+        threshold: [0, 0.1, 0.2], 
+        rootMargin: '100px 0px',
+    };
+
+    const serviceObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const item = entry.target;
+                item.style.visibility = 'visible';
+                
+                const rect = item.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const distanceFromCenter = Math.abs((rect.top + rect.height/2) - viewportHeight/2);
+                const delay = (distanceFromCenter / viewportHeight) * 200; 
+                
+                setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        item.classList.add('revealed');
+                        
+                        const content = item.querySelector('.service-content');
+                        if (content) {
+                            content.style.transform = 'scale(1)';
+                            content.style.opacity = '1';
+                        }
+                    });
+                }, delay);
+                
+                serviceObserver.unobserve(item);
+            }
+        });
+    }, serviceObserverOptions);
+
+    serviceItems.forEach((item, index) => {
+        item.style.visibility = 'visible';
+        item.classList.remove('revealed');
+        
+        const staggerDelay = Math.pow(1.05, index) * 0.25;
+        item.style.transitionDelay = `${staggerDelay}s`;
+        
+        const content = item.querySelector('.service-content');
+        if (content) {
+            content.style.transform = 'scale(0.98)';
+            content.style.opacity = '0';
+            content.style.transition = 'all 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+        }
+        
+        serviceObserver.observe(item);
+    });
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                serviceItems.forEach(item => {
+                    if (item.classList.contains('revealed')) {
+                        const rect = item.getBoundingClientRect();
+                        const scrollPercent = rect.top / window.innerHeight;
+                        const moveY = scrollPercent * 15; 
+                        item.style.transform = `translateY(${moveY}px)`;
+                    }
+                });
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    const containerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const container = entry.target;
+                requestAnimationFrame(() => {
+                    container.classList.add('revealed');
+                });
+                containerObserver.unobserve(container);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const serviceArea = document.querySelector('.service-areas');
+    containerObserver.observe(serviceArea);
+
+    const addScrollAnimations = () => {
+        const scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        serviceItems.forEach((item, index) => {
+            if (item.classList.contains('revealed')) {
+                const offset = (index + 1) * 0.1;
+                const scale = 1 + (scrollProgress * 0.02);
+                item.style.transform = `scale(${scale})`;
+            }
+        });
+    };
+
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(addScrollAnimations);
+    }, { passive: true });
   
     initialize();
     startAutoplay();

@@ -5,32 +5,25 @@ function updateHeader() {
   const header = document.querySelector('.header');
   const currentScrollY = window.scrollY;
   
-  if (Math.abs(currentScrollY - lastScrollY) > 20) {
-    if (currentScrollY > lastScrollY) {
-      header.classList.add('header--hidden');
-    } else {
-      header.classList.remove('header--hidden');
-    }
-    lastScrollY = currentScrollY;
+  // Hide header when scrolling down, show when scrolling up
+  if (currentScrollY > lastScrollY) {
+    header.classList.add('header--hidden');
+  } else {
+    header.classList.remove('header--hidden');
   }
   
+  // Always show header at the top of the page
+  if (currentScrollY === 0) {
+    header.classList.remove('header--hidden');
+  }
+  
+  lastScrollY = currentScrollY;
   ticking = false;
 }
 
-let scrollTimeout;
 window.addEventListener('scroll', () => {
   if (!ticking) {
-    window.requestAnimationFrame(() => {
-      updateHeader();
-    });
+    window.requestAnimationFrame(updateHeader);
     ticking = true;
   }
-  
-  clearTimeout(scrollTimeout);
-  
-  scrollTimeout = setTimeout(() => {
-    if (window.scrollY <= 0) {
-      document.querySelector('.header').classList.remove('header--hidden');
-    }
-  }, 150);
 });
