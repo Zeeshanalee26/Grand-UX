@@ -118,16 +118,16 @@ class ProjectReveal {
     requestAnimationFrame(moveCursor);
 
     // Handle cursor visibility and interactions
-    document.querySelectorAll('.project-image-container').forEach(container => {
-      container.addEventListener('mouseenter', () => {
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
         cursor.classList.add('active');
       });
 
-      container.addEventListener('mouseleave', () => {
+      card.addEventListener('mouseleave', () => {
         cursor.classList.remove('active');
       });
 
-      container.addEventListener('mousemove', () => {
+      card.addEventListener('mousemove', () => {
         cursorCircle.style.transform = 'scale(1.1)';
         setTimeout(() => {
           cursorCircle.style.transform = 'scale(1)';
@@ -137,11 +137,9 @@ class ProjectReveal {
   }
 
   setupHoverEffects() {
-    document.querySelectorAll('.project-image-container').forEach(container => {
-      const projectCard = container.closest('.project-card');
-      
-      container.addEventListener('mouseenter', () => {
-        const title = projectCard.querySelector('.project-info h3');
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const title = card.querySelector('.project-info h3');
         title.style.transition = 'all 0.4s cubic-bezier(0.33, 1, 0.68, 1)';
       });
     });

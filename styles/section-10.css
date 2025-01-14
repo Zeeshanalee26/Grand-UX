@@ -1,0 +1,120 @@
+.section-10 {
+  width: 1440px;
+  height: 750px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.pricing-container {
+  width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  gap: 92px;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.pricing-container.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pricing-header {
+  width: 608px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.pricing-title {
+  font-size: 70px;
+  line-height: 78px;
+  font-weight: 460;
+  letter-spacing: -0.02em;
+}
+
+.gray-text {
+  color: rgba(131, 141, 151, 1);
+}
+
+.pricing-subtitle {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 460;
+  color: rgba(131, 141, 151, 1);
+  margin-bottom: 40px;
+}
+
+.pricing-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #000;
+  padding: 8px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 620;
+  font-size: 22px;
+  height: 74px;
+  min-width: 260px;
+  transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform, background-color;
+}
+
+.pricing-models {
+  width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.model-card {
+  max-width: 440px;
+  max-height: 210px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 40px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: background-color, border-color;
+}
+
+.model-card:hover {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.model-title {
+  font-size: 64px;
+  line-height: 74px;
+  font-weight: 460;
+  transition: color 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.model-description {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 460;
+  color: rgba(131, 141, 151, 1);
+  transition: color 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.model-card:hover .model-title,
+.model-card:hover .model-description {
+  color: #000;
+} 

@@ -8,7 +8,7 @@ function updateHeader() {
   // Hide header when scrolling down, show when scrolling up
   if (currentScrollY > lastScrollY) {
     header.classList.add('header--hidden');
-  } else {
+  } else if (currentScrollY < lastScrollY) {
     header.classList.remove('header--hidden');
   }
   

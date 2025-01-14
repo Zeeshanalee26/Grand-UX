@@ -10,6 +10,7 @@
   transform: translateY(40px);
   transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
+  margin-bottom: 90px;
 }
 
 .service-areas.revealed {
@@ -67,7 +68,7 @@
   gap: 30px;
   max-width: 1114px;
   height: 620px;
-  margin-bottom: 54px;
+  margin-bottom: 10px;
 }
 
 .services-list {
@@ -79,7 +80,7 @@
 .service-item {
   position: relative;
   cursor: pointer;
-  padding-bottom: 15px;
+  padding-bottom: 32px;
   border-bottom: 1px solid #eee;
   max-width: 483px;
   max-height: 187px;
@@ -132,10 +133,10 @@
 
 .service-areas .service-item p {
   max-width: 435px;
-  max-height: 95px;
+  max-height: 92px;
   font-size: 20px;
-  line-height: 32px;
-  font-weight: 400;
+  line-height: 28px;
+  font-weight: 460;
   color: rgba(41, 41, 41, 1);
   margin: 0;
   transition: opacity 0.3s ease-out;
@@ -338,15 +339,15 @@
 }
 
 .service-item.service-1 .timer-fill {
-  background: red;
+  background: #F26B3A;
 }
 
 .service-item.service-2 .timer-fill {
-  background: blue; 
+  background: #F26B3A;
 }
 
 .service-item.service-3 .timer-fill {
-  background: green; 
+  background: #F26B3A;
 }
 
 .service-item:hover .service-image {

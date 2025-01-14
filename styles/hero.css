@@ -10,6 +10,27 @@
   align-items: center;
   position: relative;
   background-color: black;
+  overflow: hidden;
+}
+
+/* Add the background light effect */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  width: 501.69px;
+  height: 1245.28px;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(217, 217, 217, 1) 0%,
+    rgba(217, 217, 217, 0) 100%
+  );
+  top: -735.7px;
+  left: 550px;
+  transform: rotate(165deg);
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(220px);
+  mix-blend-mode: screen;
 }
 
 .hero-content {
