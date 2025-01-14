@@ -30,7 +30,7 @@
   font-size: 70px;
   line-height: 78px;
   font-weight: 460;
-  color: rgba(41, 41, 41, 1);
+  color: black;
   opacity: 0;
   transform: translateY(40px);
   transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -98,10 +98,10 @@
 
 .review-text {
   font-size: 44px;
-  line-height: 60px;
+  line-height: 52px;
   font-weight: 460;
   color: #000;
-  max-width: 800px;
+  max-width: 950px;
   margin: 0 auto 40px;
   text-align: center;
 }
@@ -118,10 +118,10 @@
 }
 
 .author-name {
-  font-size: 24px;
+  font-size: 20px;
   line-height: 28.8px;
   font-weight: 460;
-  color: #000;
+  color: rgba(29, 29, 29, 1);
 }
 
 .author-title {

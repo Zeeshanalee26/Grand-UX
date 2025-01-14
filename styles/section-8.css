@@ -26,7 +26,7 @@
   font-size: 70px;
   line-height: 78px;
   font-weight: 460;
-  color: rgba(41, 41, 41, 1);
+  color: black;
 }
 
 .stats-container {
@@ -58,7 +58,7 @@
   line-height: 28px;
   font-weight: 460;
   color: rgba(41, 41, 41, 1);
-  max-width: 280px;
+  max-width: 350px;
 }
 
 .reveal-slide-up {

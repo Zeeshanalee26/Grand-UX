@@ -14,24 +14,24 @@
 .footer-left {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .footer-logo {
-  font-size: 32px;
-  line-height: 38px;
-  font-weight: 460;
-  color: #000;
+  width: 142px;
+  height: 34px;
+  object-fit: contain;
 }
 
 .footer-email {
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 38px;
+  line-height: 46px;
   font-weight: 460;
   color: #000;
   text-decoration: none;
   display: inline-block;
   position: relative;
+  margin-bottom: 70px;
 }
 
 .footer-email::after {
@@ -41,7 +41,7 @@
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: #FF4D00;
+  background-color: #000000;
   transition: width 0.3s ease;
 }
 
@@ -59,7 +59,7 @@
   font-size: 20px;
   line-height: 28px;
   font-weight: 460;
-  color: #000;
+  color: rgba(41, 41, 41, 1);
   text-decoration: none;
   position: relative;
 }
@@ -71,7 +71,7 @@
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: #FF4D00;
+  background-color: rgba(41, 41, 41, 1);
   transition: width 0.3s ease;
 }
 
@@ -98,7 +98,7 @@
   font-size: 20px;
   line-height: 28px;
   font-weight: 460;
-  color: #000;
+  color: rgba(41, 41, 41, 1);
   text-decoration: none;
   position: relative;
 }
@@ -110,7 +110,7 @@
   height: 2px;
   bottom: -6px;
   left: 0;
-  background-color: #FF4D00;
+  background-color: rgba(41, 41, 41, 1);
   transition: width 0.3s ease;
 }
 
@@ -129,5 +129,5 @@
   font-size: 20px;
   line-height: 28px;
   font-weight: 460;
-  color: #000;
+  color: rgba(41, 41, 41, 1);
 } 
