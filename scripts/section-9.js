@@ -1,83 +1,70 @@
 class ReviewsSlider {
   constructor() {
     this.currentIndex = 0;
-    this.reviews = document.querySelectorAll('.review');
-    this.totalReviews = this.reviews.length;
     this.isAnimating = false;
     this.isVisible = false;
+    this.container = document.querySelector('.reviews-slider');
+    this.reviews = Array.from(this.container.querySelectorAll('.review'));
+    this.totalReviews = this.reviews.length;
+    
+    // Initialize all reviews with correct positioning
+    this.reviews.forEach((review, index) => {
+      review.style.position = 'absolute';
+      review.style.top = '0';
+      review.style.left = '0';
+      review.style.width = '100%';
+      review.style.display = index === 0 ? 'block' : 'none';
+    });
+    
+    // Show first review
+    this.reviews[0].classList.add('active');
     
     this.init();
     this.initRevealAnimations();
-    this.initCustomCursor();
+    this.initInteractions();
   }
 
   init() {
     // Create cursor dot
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'cursor-dot';
-    document.body.appendChild(cursorDot);
+    this.cursorDot = document.createElement('div');
+    this.cursorDot.className = 'cursor-dot';
+    document.body.appendChild(this.cursorDot);
   }
 
-  initCustomCursor() {
-    const cursorDot = document.querySelector('.cursor-dot');
-    const sliderContainer = document.querySelector('.reviews-slider');
-    const activeReview = () => document.querySelector('.review.active');
+  initInteractions() {
+    let clickTimeout;
     
-    // Track mouse movement on the slider
-    sliderContainer.addEventListener('mousemove', (e) => {
-      const rect = sliderContainer.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const isLeftHalf = x < rect.width / 2;
+    this.container.addEventListener('mousemove', (e) => {
+      const rect = this.container.getBoundingClientRect();
+      const isRightSide = e.clientX > rect.left + rect.width / 2;
       
-      cursorDot.style.left = e.clientX + 'px';
-      cursorDot.style.top = e.clientY + 'px';
+      this.cursorDot.style.left = e.clientX + 'px';
+      this.cursorDot.style.top = e.clientY + 'px';
       
-      cursorDot.classList.toggle('prev', isLeftHalf);
-      cursorDot.classList.toggle('next', !isLeftHalf);
+      this.cursorDot.classList.add('active');
+      this.cursorDot.classList.toggle('next', isRightSide);
+      this.cursorDot.classList.toggle('prev', !isRightSide);
     });
 
-    // Show cursor only when hovering over the active review
-    sliderContainer.addEventListener('mousemove', (e) => {
-      const review = activeReview();
-      const reviewRect = review.getBoundingClientRect();
-      
-      // Check if mouse is within the review boundaries
-      if (
-        e.clientX >= reviewRect.left &&
-        e.clientX <= reviewRect.right &&
-        e.clientY >= reviewRect.top &&
-        e.clientY <= reviewRect.bottom
-      ) {
-        cursorDot.style.opacity = '1';
-      } else {
-        cursorDot.style.opacity = '0';
-      }
+    this.container.addEventListener('mouseleave', () => {
+      this.cursorDot.classList.remove('active', 'next', 'prev');
     });
 
-    // Hide cursor when leaving the slider
-    sliderContainer.addEventListener('mouseleave', () => {
-      cursorDot.style.opacity = '0';
-    });
-
-    // Handle clicks on the review
-    sliderContainer.addEventListener('click', (e) => {
-      const review = activeReview();
-      const reviewRect = review.getBoundingClientRect();
+    // Debounced click handler
+    this.container.addEventListener('click', (e) => {
+      if (this.isAnimating) return;
       
-      // Only handle clicks within the review boundaries
-      if (
-        e.clientX >= reviewRect.left &&
-        e.clientX <= reviewRect.right &&
-        e.clientY >= reviewRect.top &&
-        e.clientY <= reviewRect.bottom
-      ) {
-        const x = e.clientX - reviewRect.left;
-        if (x < reviewRect.width / 2) {
-          this.showPrevReview();
-        } else {
+      clearTimeout(clickTimeout);
+      clickTimeout = setTimeout(() => {
+        const rect = this.container.getBoundingClientRect();
+        const isRightSide = e.clientX > rect.left + rect.width / 2;
+        
+        if (isRightSide) {
           this.showNextReview();
+        } else {
+          this.showPrevReview();
         }
-      }
+      }, 50);
     });
   }
 
@@ -122,50 +109,6 @@ class ReviewsSlider {
     });
   }
 
-  showPrevReview() {
-    if (this.isAnimating) return;
-    this.isAnimating = true;
-    
-    const prevIndex = (this.currentIndex - 1 + this.totalReviews) % this.totalReviews;
-    const currentReview = this.reviews[this.currentIndex];
-    const prevReview = this.reviews[prevIndex];
-    
-    // Setup initial state
-    prevReview.style.transition = 'none';
-    prevReview.style.transform = 'translateX(-100px)';
-    prevReview.style.opacity = '0';
-    prevReview.style.display = 'block';
-    
-    // Force reflow
-    prevReview.offsetHeight;
-    
-    // Start animation
-    requestAnimationFrame(() => {
-      prevReview.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
-      currentReview.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
-      
-      // Animate out current review
-      currentReview.style.transform = 'translateX(100px)';
-      currentReview.style.opacity = '0';
-      
-      // Animate in previous review
-      prevReview.style.transform = 'translateX(0)';
-      prevReview.style.opacity = '1';
-      
-      // Update classes
-      currentReview.classList.remove('active');
-      prevReview.classList.add('active');
-      
-      this.currentIndex = prevIndex;
-      
-      // Reset after animation
-      setTimeout(() => {
-        currentReview.style.display = 'none';
-        this.isAnimating = false;
-      }, 1200);
-    });
-  }
-
   showNextReview() {
     if (this.isAnimating) return;
     this.isAnimating = true;
@@ -174,39 +117,84 @@ class ReviewsSlider {
     const currentReview = this.reviews[this.currentIndex];
     const nextReview = this.reviews[nextIndex];
     
-    // Setup initial state
-    nextReview.style.transition = 'none';
+    // Reset any existing transitions
+    this.reviews.forEach(review => {
+      review.style.transition = 'none';
+      review.style.display = 'none';
+    });
+    
+    // Setup initial states
+    currentReview.style.display = 'block';
+    nextReview.style.display = 'block';
     nextReview.style.transform = 'translateX(100px)';
     nextReview.style.opacity = '0';
-    nextReview.style.display = 'block';
     
     // Force reflow
     nextReview.offsetHeight;
     
     // Start animation
     requestAnimationFrame(() => {
-      nextReview.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
-      currentReview.style.transition = 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+      currentReview.style.transition = 'all 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
+      nextReview.style.transition = 'all 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
       
-      // Animate out current review
       currentReview.style.transform = 'translateX(-100px)';
       currentReview.style.opacity = '0';
       
-      // Animate in next review
       nextReview.style.transform = 'translateX(0)';
       nextReview.style.opacity = '1';
       
-      // Update classes
       currentReview.classList.remove('active');
       nextReview.classList.add('active');
       
       this.currentIndex = nextIndex;
       
-      // Reset after animation
       setTimeout(() => {
         currentReview.style.display = 'none';
         this.isAnimating = false;
-      }, 1200);
+      }, 600);
+    });
+  }
+
+  showPrevReview() {
+    // Similar to showNextReview but with opposite directions
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+    
+    const prevIndex = (this.currentIndex - 1 + this.totalReviews) % this.totalReviews;
+    const currentReview = this.reviews[this.currentIndex];
+    const prevReview = this.reviews[prevIndex];
+    
+    this.reviews.forEach(review => {
+      review.style.transition = 'none';
+      review.style.display = 'none';
+    });
+    
+    currentReview.style.display = 'block';
+    prevReview.style.display = 'block';
+    prevReview.style.transform = 'translateX(-100px)';
+    prevReview.style.opacity = '0';
+    
+    prevReview.offsetHeight;
+    
+    requestAnimationFrame(() => {
+      currentReview.style.transition = 'all 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
+      prevReview.style.transition = 'all 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
+      
+      currentReview.style.transform = 'translateX(100px)';
+      currentReview.style.opacity = '0';
+      
+      prevReview.style.transform = 'translateX(0)';
+      prevReview.style.opacity = '1';
+      
+      currentReview.classList.remove('active');
+      prevReview.classList.add('active');
+      
+      this.currentIndex = prevIndex;
+      
+      setTimeout(() => {
+        currentReview.style.display = 'none';
+        this.isAnimating = false;
+      }, 600);
     });
   }
 }

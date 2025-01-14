@@ -1,20 +1,28 @@
 let lastScrollY = window.scrollY;
 let ticking = false;
+let scrollThreshold = 1000;
+let accumulatedScroll = 0;
 
 function updateHeader() {
   const header = document.querySelector('.header');
   const currentScrollY = window.scrollY;
+  const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
   
-  // Hide header when scrolling down, show when scrolling up
-  if (currentScrollY > lastScrollY) {
+  if (scrollDirection === 'down') {
+    accumulatedScroll = 0;
     header.classList.add('header--hidden');
-  } else if (currentScrollY < lastScrollY) {
-    header.classList.remove('header--hidden');
+  } 
+  else if (scrollDirection === 'up') {
+    accumulatedScroll += (lastScrollY - currentScrollY);
+    
+    if (accumulatedScroll >= scrollThreshold) {
+      header.classList.remove('header--hidden');
+    }
   }
   
-  // Always show header at the top of the page
   if (currentScrollY === 0) {
     header.classList.remove('header--hidden');
+    accumulatedScroll = 0;
   }
   
   lastScrollY = currentScrollY;

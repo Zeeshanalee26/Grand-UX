@@ -1,76 +1,67 @@
-class CapabilityAccordion {
+class CapabilitySection {
   constructor() {
-    this.init();
-    this.initRevealAnimations();
+    this.groups = document.querySelectorAll('.capability-group');
+    this.activeGroup = null;
+    this.initializeGroups();
   }
 
-  init() {
-    const groups = document.querySelectorAll('.capability-group');
-    
-    groups.forEach(group => {
+  initializeGroups() {
+    this.groups.forEach(group => {
       const header = group.querySelector('.capability-header');
-      header.addEventListener('click', () => this.toggleGroup(group));
-    });
-  }
-
-  initRevealAnimations() {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
+      header.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggleGroup(group);
       });
-    }, {
-      threshold: 0.1
-    });
-
-    document.querySelectorAll('.reveal-slide-up').forEach(element => {
-      revealObserver.observe(element);
     });
   }
 
-  toggleGroup(group) {
-    const isActive = group.classList.contains('active');
-    const section = document.querySelector('.section-7');
-    const sectionRect = section.getBoundingClientRect();
-    const header = group.querySelector('.capability-header');
-    const headerRect = header.getBoundingClientRect();
-
-    // Close other groups first
-    document.querySelectorAll('.capability-group.active').forEach(activeGroup => {
-      if (activeGroup !== group) {
-        activeGroup.classList.remove('active');
-      }
-    });
-
-    if (!isActive) {
-      // Add active class to expand the group
-      group.classList.add('active');
-
-      // Calculate scroll position
-      requestAnimationFrame(() => {
-        const headerTop = headerRect.top + window.pageYOffset;
-        const sectionTop = sectionRect.top + window.pageYOffset;
-        const sectionPadding = 140; // Section's top padding
+  toggleGroup(clickedGroup) {
+    // If there's an active group and it's different from the clicked one
+    if (this.activeGroup && this.activeGroup !== clickedGroup) {
+      // Store the current scroll position
+      const scrollPos = window.scrollY;
+      
+      // Close the active group
+      this.activeGroup.classList.remove('active');
+      
+      // Wait for close animation
+      setTimeout(() => {
+        // Open the clicked group
+        clickedGroup.classList.add('active');
+        this.activeGroup = clickedGroup;
         
-        // Calculate the target scroll position
-        let targetScroll = headerTop - sectionPadding;
-
-        // Ensure we don't scroll above the section
-        targetScroll = Math.max(targetScroll, sectionTop);
-        
+        // Restore the scroll position
         window.scrollTo({
-          top: targetScroll,
-          behavior: 'smooth'
+          top: scrollPos,
+          behavior: 'instant'
         });
-      });
+      }, 300); // Match this with your CSS transition time
     } else {
-      group.classList.remove('active');
+      // If no active group or clicking the same group
+      if (clickedGroup.classList.contains('active')) {
+        clickedGroup.classList.remove('active');
+        this.activeGroup = null;
+      } else {
+        clickedGroup.classList.add('active');
+        this.activeGroup = clickedGroup;
+        
+        // Ensure the header stays in view
+        const header = clickedGroup.querySelector('.capability-header');
+        const headerRect = header.getBoundingClientRect();
+        
+        if (headerRect.top < 100) { // Add some padding from top
+          const newScrollPos = window.scrollY + headerRect.top - 100;
+          window.scrollTo({
+            top: newScrollPos,
+            behavior: 'smooth'
+          });
+        }
+      }
     }
   }
 }
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  new CapabilityAccordion();
+  new CapabilitySection();
 }); 

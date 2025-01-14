@@ -1,8 +1,9 @@
 .section-6 {
   width: 1440px;
-  height: 3158px;
+  height: 3000px;
   background-color: #fff;
-  padding: 0 140px 140px 140px;
+  padding-inline: 140px;
+  margin-bottom: 0;
 }
 
 .section-6 .container {
@@ -82,7 +83,7 @@
   height: 775px;
   grid-column: 1;
   margin-left: 120px;
-  margin-bottom: 120px;
+  margin-block: 40px;
 }
 
 .project-card:nth-child(3) .project-image {
@@ -96,6 +97,7 @@
   height: 825px;
   grid-column: 1 / -1;
   margin-top: 0;
+  margin-bottom: 0;
 }
 
 .project-card:nth-child(4) .project-image {
@@ -145,7 +147,6 @@
               opacity 1.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Animation classes */
 .image-container-visible {
   transform: translateY(0);
   opacity: 1;
@@ -212,8 +213,8 @@
   line-height: 26px;
   color: rgba(0, 0, 0, 0.7);
   padding: 2px 16px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
   border-radius: 999px;
+  background-color: rgba(229, 229, 234, 1);
 }
 
 .custom-cursor {
@@ -238,12 +239,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(20, 21, 21, 0.65);
+  background-color: rgba(20, 21, 21, 0.4);
   border-radius: 50%;
   transform: scale(0.8);
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .custom-cursor-text {
@@ -257,7 +260,6 @@
   color: #ffffff;
   opacity: 0;
   transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   z-index: 1;
 }
 
@@ -268,22 +270,13 @@
 .custom-cursor.active .custom-cursor-circle {
   transform: scale(1);
   opacity: 1;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .custom-cursor.active .custom-cursor-text {
   opacity: 1;
 }
 
-.project-image-container {
-  cursor: none;
-}
-
-/* Add hover effect */
 .project-image-container:hover .custom-cursor-circle {
   transform: scale(1.1);
-}
-
-.project-card:hover {
-  /* ... hover styles ... */
+  background-color: rgba(20, 21, 21, 0.5);
 }
