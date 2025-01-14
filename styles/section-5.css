@@ -2,6 +2,7 @@
   font-family: 'figtree', sans-serif !important;
   max-width: 1440px;
   height: 1410px;
+  width: 100%;
   padding-top: 140px;
   padding-bottom: 0;
   padding-inline: 163px;
@@ -143,8 +144,8 @@
 }
 
 .service-image {
-  flex: 0 0 45%;
-  height: 620px;
+  flex: 0 0 40%;
+  height: 540px;
   position: relative;
   overflow: hidden;
   margin-top: 20px;
@@ -185,7 +186,7 @@
   bottom: -1px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 1.5px;
   background: #eee;
   overflow: hidden;
 }
@@ -233,7 +234,7 @@
 }
 
 .button-container {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .learn-more-btn {
