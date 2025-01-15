@@ -239,7 +239,7 @@
   width: 100%;
 }
 
-.learn-more-btn {
+.button-container .learn-more-btn {
   font-family: 'figtree', sans-serif;
   display: flex;
   justify-content: center;

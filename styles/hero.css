@@ -13,7 +13,6 @@
   overflow: hidden;
 }
 
-/* Add the background light effect */
 .hero-section::before {
   content: '';
   position: absolute;

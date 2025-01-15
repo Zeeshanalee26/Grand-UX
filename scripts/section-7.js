@@ -43,4 +43,29 @@ class CapabilitySection {
 
 document.addEventListener('DOMContentLoaded', () => {
   new CapabilitySection();
+});
+
+function toggleCapabilityGroup(group) {
+  const isActive = group.classList.contains('active');
+  
+  // Close all groups first
+  document.querySelectorAll('.capability-group').forEach(g => {
+    g.classList.remove('active');
+  });
+
+  if (!isActive) {
+    group.classList.add('active');
+    // Add staggered animation to items
+    const items = group.querySelectorAll('.capability-item');
+    items.forEach((item, index) => {
+      item.style.transitionDelay = `${index * 0.05}s`;
+    });
+  }
+}
+
+document.querySelectorAll('.capability-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const group = header.parentElement;
+    toggleCapabilityGroup(group);
+  });
 }); 
