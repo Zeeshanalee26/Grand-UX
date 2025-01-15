@@ -4,12 +4,14 @@ class ReviewsSlider {
     this.reviews = Array.from(document.querySelectorAll('.review'));
     this.currentIndex = 0;
     this.isAnimating = false;
-
-    // Initialize all reviews with correct positioning
+    
+    // Initialize reviews
     this.reviews.forEach((review, index) => {
       if (index === 0) {
+        review.style.display = 'flex';
         review.classList.add('active');
       } else {
+        review.style.display = 'flex';
         review.classList.add('slide-right');
       }
     });
@@ -26,8 +28,8 @@ class ReviewsSlider {
     leftNav.style.cssText = 'position: absolute; left: 0; top: 0; width: 50%; height: 100%; z-index: 2; cursor: none;';
     rightNav.style.cssText = 'position: absolute; right: 0; top: 0; width: 50%; height: 100%; z-index: 2; cursor: none;';
 
-    leftNav.addEventListener('click', () => this.navigate('prev'));
-    rightNav.addEventListener('click', () => this.navigate('next'));
+    leftNav.addEventListener('click', () => this.navigate('prev', true));
+    rightNav.addEventListener('click', () => this.navigate('next', true));
 
     this.slider.appendChild(leftNav);
     this.slider.appendChild(rightNav);
@@ -39,8 +41,10 @@ class ReviewsSlider {
     document.body.appendChild(cursor);
 
     const updateCursor = (e) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
+      requestAnimationFrame(() => {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      });
     };
 
     document.addEventListener('mousemove', updateCursor);
@@ -48,23 +52,14 @@ class ReviewsSlider {
     const leftNav = this.slider.querySelector('.nav-left');
     const rightNav = this.slider.querySelector('.nav-right');
 
-    leftNav.addEventListener('mouseenter', () => {
-      cursor.classList.add('active', 'prev');
-    });
-    leftNav.addEventListener('mouseleave', () => {
-      cursor.classList.remove('active', 'prev');
-    });
-
-    rightNav.addEventListener('mouseenter', () => {
-      cursor.classList.add('active', 'next');
-    });
-    rightNav.addEventListener('mouseleave', () => {
-      cursor.classList.remove('active', 'next');
-    });
+    leftNav.addEventListener('mouseenter', () => cursor.classList.add('active', 'prev'));
+    leftNav.addEventListener('mouseleave', () => cursor.classList.remove('active', 'prev'));
+    rightNav.addEventListener('mouseenter', () => cursor.classList.add('active', 'next'));
+    rightNav.addEventListener('mouseleave', () => cursor.classList.remove('active', 'next'));
   }
 
-  navigate(direction) {
-    if (this.isAnimating) return;
+  navigate(direction, isUserClick = false) {
+    if (this.isAnimating && !isUserClick) return;
     this.isAnimating = true;
 
     const currentReview = this.reviews[this.currentIndex];
@@ -73,26 +68,19 @@ class ReviewsSlider {
       : (this.currentIndex - 1 + this.reviews.length) % this.reviews.length;
     const nextReview = this.reviews[nextIndex];
 
-    // Set initial positions
-    nextReview.style.display = 'flex';
-    nextReview.classList.add(direction === 'next' ? 'slide-right' : 'slide-left');
+    currentReview.classList.add(direction === 'next' ? 'slide-left' : 'slide-right');
+    currentReview.classList.remove('active');
     
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        // Animate transition
-        currentReview.classList.add(direction === 'next' ? 'slide-left' : 'slide-right');
-        currentReview.classList.remove('active');
-        nextReview.classList.add('active');
-        nextReview.classList.remove('slide-left', 'slide-right');
-      });
-    });
+    nextReview.classList.remove('slide-left', 'slide-right');
+    nextReview.classList.add('active');
 
     this.currentIndex = nextIndex;
 
     setTimeout(() => {
       this.isAnimating = false;
-      currentReview.style.display = 'none';
-    }, 600); // Match the longest transition duration
+      currentReview.classList.remove('slide-left', 'slide-right');
+      currentReview.classList.add(direction === 'next' ? 'slide-right' : 'slide-left');
+    }, 600);
   }
 }
 

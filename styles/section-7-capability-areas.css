@@ -78,8 +78,7 @@
 .capability-group {
   border-top: 1px solid #2a2e33;
   transform: translateZ(0);
-  will-change: transform, opacity;
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 .capability-group:first-child {
@@ -101,9 +100,8 @@
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
   letter-spacing: -0.02em;
-  will-change: transform, color;
   position: relative;
   background-color: #000;
   z-index: 2;
@@ -137,8 +135,7 @@
   overflow: hidden;
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-  will-change: transform, opacity, max-height;
+  transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
   visibility: hidden;
 }
 
@@ -158,14 +155,12 @@
   position: relative;
   padding-left: 24px;
   cursor: pointer;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
-.capability-group.active .capability-item {
-  opacity: 1;
-  transform: translateY(0);
+.capability-item:hover {
+  color: #fff;
+  transform: translateX(8px);
 }
 
 .capability-item::before {
@@ -180,12 +175,6 @@
   background-color: rgba(131, 141, 151, 1);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: background-color, transform;
-}
-
-.capability-item:hover {
-  color: #fff;
-  transform: translateX(8px);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .capability-item:hover::before {

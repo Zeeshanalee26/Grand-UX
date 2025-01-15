@@ -1,6 +1,8 @@
 class RevealOnScroll {
   constructor() {
     this.sections = document.querySelectorAll([
+      '.section-2',
+      '.section-3',
       '.service-areas',
       '.project-card',
       '.capability-section',
@@ -14,7 +16,7 @@ class RevealOnScroll {
     this.observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.15
+      threshold: 0.40
     };
 
     this.observer = new IntersectionObserver(this.handleIntersect.bind(this), this.observerOptions);

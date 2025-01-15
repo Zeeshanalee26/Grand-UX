@@ -25,4 +25,17 @@
 .reveal-visible .reveal-child {
   opacity: 1;
   transform: translateY(0);
+}
+
+.section-2,
+.section-3 {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.section-2.reveal-visible,
+.section-3.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
 } 
