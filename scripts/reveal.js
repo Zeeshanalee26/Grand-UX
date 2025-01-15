@@ -1,8 +1,6 @@
 class RevealOnScroll {
   constructor() {
     this.sections = document.querySelectorAll([
-      '.section-2',
-      '.section-3',
       '.service-areas',
       '.project-card',
       '.capability-section',

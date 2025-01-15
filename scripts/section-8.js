@@ -1,52 +1,58 @@
 class CounterAnimation {
   constructor() {
-    this.counters = document.querySelectorAll('.counter');
-    this.options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.5
-    };
-    
-    this.observer = new IntersectionObserver(this.handleIntersect.bind(this), this.options);
     this.init();
   }
 
   init() {
-    this.counters.forEach(counter => {
-      counter.innerText = '0';
-      this.observer.observe(counter);
+    const counters = document.querySelectorAll('.section-8 .counter');
+    if (!counters.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const target = parseInt(element.getAttribute('data-target'));
+          this.animateValue(element, target);
+          observer.unobserve(element);
+        }
+      });
+    }, {
+      threshold: 0.5,
+      rootMargin: '-10% 0px'
+    });
+
+    counters.forEach(counter => {
+      observer.observe(counter);
     });
   }
 
-  handleIntersect(entries) {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        this.animateCounter(entry.target);
-        this.observer.unobserve(entry.target);
-      }
-    });
-  }
+  animateValue(element, target) {
+    let start = 0;
+    const duration = 2000;
+    const startTime = performance.now();
 
-  animateCounter(counter) {
-    const target = parseInt(counter.getAttribute('data-target'));
-    const duration = 2000; // 2 seconds
-    const step = (target / duration) * 16; // 16ms is roughly one frame
-    let current = 0;
+    const update = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
 
-    const updateCounter = () => {
-      current += step;
-      if (current < target) {
-        counter.innerText = Math.round(current);
-        requestAnimationFrame(updateCounter);
+      // Easing function for smoother animation
+      const easeOutQuad = t => t * (2 - t);
+      const currentValue = Math.floor(easeOutQuad(progress) * target);
+
+      element.textContent = currentValue;
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
       } else {
-        counter.innerText = target;
+        element.textContent = target;
       }
     };
 
-    requestAnimationFrame(updateCounter);
+    requestAnimationFrame(update);
   }
 }
 
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
   new CounterAnimation();
 }); 
