@@ -11,15 +11,6 @@
   align-items: center;
   text-align: center;
   gap: 110px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1.2s cubic-bezier(0.33, 1, 0.68, 1);
-  will-change: transform, opacity;
-}
-
-.results-container.active {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .results-title {

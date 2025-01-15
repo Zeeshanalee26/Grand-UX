@@ -3,15 +3,13 @@
   max-width: 1440px;
   height: 1410px;
   width: 100%;
-  padding-top: 140px;
-  padding-bottom: 0;
+  padding-block: 140px;
   padding-inline: 163px;
   margin: 0 auto;
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1;
+  transform: none;
   transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform, opacity;
-  margin-bottom: 90px;
 }
 
 .service-areas.revealed {
@@ -26,9 +24,7 @@
   justify-content: center;
   gap: 15px;
   text-align: center;
-  max-width: 1030px;
-  max-height: 220px;
-  margin-bottom: 100px;
+  margin-bottom: 160px;
 }
 
 .service-header h2 {
@@ -36,7 +32,7 @@
   font-weight: 400;
   line-height: 24px;
   color: rgba(41, 41, 41, 1);
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .service-areas .service-header h1 {
@@ -53,6 +49,15 @@
   font-weight: 460;
   line-height: 24px;
   color: #666;
+}
+
+.service-content-wrapper {
+  display: flex;
+  gap: 151px;
+  align-items: flex-start;
+  max-width: 1114px;
+  max-height: 622px;
+  margin-bottom: 6px;
 }
 
 .service-content {
@@ -85,9 +90,10 @@
   border-bottom: 1px solid #eee;
   max-width: 483px;
   max-height: 187px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 1;
+  transform: none;
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--item-index, 0) * 0.1s);
   will-change: transform, opacity;
   visibility: visible;
   -webkit-font-smoothing: antialiased;
@@ -234,10 +240,6 @@
   width: 100%;
 }
 
-.button-container {
-  margin-top: 24px;
-}
-
 .learn-more-btn {
   font-family: 'figtree', sans-serif;
   display: flex;
@@ -254,12 +256,6 @@
   font-weight: 400;
   text-decoration: none;
   transition: all 0.3s ease;
-}
-
-.learn-more-btn:hover {
-  background: #333;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 @media (min-width: 1440px) {
@@ -383,4 +379,17 @@
 
 .service-item:not(.revealed) {
   opacity: 0;
+}
+
+.service-areas.reveal-hidden,
+.service-item.reveal-hidden {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+
+.service-areas.reveal-visible,
+.service-item.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }

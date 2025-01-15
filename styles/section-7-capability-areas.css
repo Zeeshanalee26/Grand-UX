@@ -101,13 +101,12 @@
   justify-content: space-between;
   align-items: center;
   color: #fff;
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
   letter-spacing: -0.02em;
   will-change: transform, color;
   position: relative;
   background-color: #000;
   z-index: 2;
-  transform-origin: left center;
 }
 
 .capability-header:hover {
@@ -120,7 +119,7 @@
   width: 24px;
   height: 24px;
   background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L12 15L18 9' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
   will-change: transform;
   opacity: 0.8;
 }
@@ -137,8 +136,8 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(-8px);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
   will-change: transform, opacity, max-height;
   visibility: hidden;
 }
@@ -160,14 +159,13 @@
   padding-left: 24px;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(8px);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .capability-group.active .capability-item {
   opacity: 1;
   transform: translateY(0);
-  transition-delay: 0.1s;
 }
 
 .capability-item::before {
@@ -210,4 +208,16 @@
 
 html {
   scroll-behavior: smooth;
+} 
+
+.capability-section {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.capability-section.revealed {
+  opacity: 1;
+  transform: translateY(0);
 } 

@@ -3,79 +3,45 @@ class CapabilitySection {
     this.groups = document.querySelectorAll('.capability-group');
     this.activeGroup = null;
     this.initializeGroups();
-    this.setupItemAnimations();
-  }
-
-  setupItemAnimations() {
-    this.groups.forEach(group => {
-      const items = group.querySelectorAll('.capability-item');
-      items.forEach((item, index) => {
-        item.style.setProperty('--item-index', index);
-      });
-    });
+    this.openDefaultGroup();
   }
 
   initializeGroups() {
+    // Remove any active classes on initialization
     this.groups.forEach(group => {
+      group.classList.remove('active');
+      
       const header = group.querySelector('.capability-header');
-      header.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (!this.isAnimating) {
-          this.toggleGroup(group);
+      header.addEventListener('click', () => {
+        // Close current active group if it exists
+        if (this.activeGroup) {
+          this.activeGroup.classList.remove('active');
         }
+        
+        // If clicking the same group, just close it
+        if (this.activeGroup === group) {
+          this.activeGroup = null;
+          return;
+        }
+        
+        // Open the clicked group
+        group.classList.add('active');
+        this.activeGroup = group;
       });
     });
   }
 
-  toggleGroup(clickedGroup) {
-    this.isAnimating = true;
-
-    if (this.activeGroup && this.activeGroup !== clickedGroup) {
-      const scrollPos = window.scrollY;
-      
-      // Smooth close of active group
-      this.activeGroup.classList.remove('active');
-      
-      setTimeout(() => {
-        clickedGroup.classList.add('active');
-        this.activeGroup = clickedGroup;
-        
-        window.scrollTo({
-          top: scrollPos,
-          behavior: 'instant'
-        });
-        
-        setTimeout(() => {
-          this.isAnimating = false;
-        }, 800);
-      }, 400);
-    } else {
-      if (clickedGroup.classList.contains('active')) {
-        clickedGroup.classList.remove('active');
-        this.activeGroup = null;
-      } else {
-        clickedGroup.classList.add('active');
-        this.activeGroup = clickedGroup;
-        
-        const header = clickedGroup.querySelector('.capability-header');
-        const headerRect = header.getBoundingClientRect();
-        
-        if (headerRect.top < 100) {
-          const newScrollPos = window.scrollY + headerRect.top - 100;
-          window.scrollTo({
-            top: newScrollPos,
-            behavior: 'smooth'
-          });
-        }
-      }
-      
-      setTimeout(() => {
-        this.isAnimating = false;
-      }, 800);
+  openDefaultGroup() {
+    // Open the first group (Research) by default
+    const researchGroup = this.groups[0];
+    if (researchGroup) {
+      researchGroup.classList.add('active');
+      this.activeGroup = researchGroup;
     }
   }
 }
 
+// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   new CapabilitySection();
 }); 

@@ -9,18 +9,19 @@
 
 
   <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/animations.css">
   <link rel="stylesheet" href="styles/hero.css">
   <link rel="stylesheet" href="styles/header.css">
   <link rel="stylesheet" href="styles/section-2.css">
-  <link rel="stylesheet" href="styles/section-3.css">
-  <link rel="stylesheet" href="styles/section-4.css">
-  <link rel="stylesheet" href="styles/section-5.css">
-  <link rel="stylesheet" href="styles/section-6.css">
-  <link rel="stylesheet" href="styles/section-7.css">
-  <link rel="stylesheet" href="styles/section-8.css">
-  <link rel="stylesheet" href="styles/section-9.css">
-  <link rel="stylesheet" href="styles/section-10.css">
-  <link rel="stylesheet" href="styles/section-11.css">
+  <link rel="stylesheet" href="styles/section-3-text-effect.css">
+  <link rel="stylesheet" href="styles/section-4-companies.css">
+  <link rel="stylesheet" href="styles/section-5-services.css">
+  <link rel="stylesheet" href="styles/section-6-projects.css">
+  <link rel="stylesheet" href="styles/section-7-capability-areas.css">
+  <link rel="stylesheet" href="styles/section-8-results.css">
+  <link rel="stylesheet" href="styles/section-9-reviews.css">
+  <link rel="stylesheet" href="styles/section-10-pricing.css">
+  <link rel="stylesheet" href="styles/section-11-contact.css">
   <link rel="stylesheet" href="styles/footer.css">
 </head>
 <body>
@@ -100,46 +101,48 @@
     </div>
 </section>
 
-<section class="service-areas">
+<section class="service-areas reveal-hidden">
   <div class="service-header">
-      <h2>Service Areas</h2>
-      <h1>From concept to launch,<br> we help you at every stage!</h1>
+    <h2>Service Areas</h2>
+    <h1>From concept to launch,<br> we help you at every stage!</h1>
   </div>
-  <div class="service-content">
-      <div class="service-text">
-          <div class="services-list">
-              <div class="service-item service-1" data-image="images/service-image-1.png">
-                  <div class="service-content">
-                      <h3>UX Design</h3>
-                      <p>At the heart of what we do is understanding your users and business goals, designing solutions that truly make an impact.</p>
-                  </div>
-                  <div class="timer-line"><div class="timer-fill"></div></div>
-              </div>
-              
-              <div class="service-item service-2" data-image="images/service-image-2.png">
-                  <div class="service-content">
-                      <h3>Visual Design</h3>
-                      <p>Your users deserve an interface that feels effortless. We ensure every click, swipe, and scroll feels just right.</p>
-                  </div>
-                  <div class="timer-line"><div class="timer-fill"></div></div>
-              </div>
-              
-              <div class="service-item service-3" data-image="images/service-image-3.png">
-                  <div class="service-content">
-                      <h3>Development</h3>
-                      <p>Our team builds scalable, performance-driven web and mobile app platforms, tailored to your business needs.</p>
-                  </div>
-                  <div class="timer-line"><div class="timer-fill"></div></div>
-                </div>
+  
+  <div class="service-content-wrapper">
+    <div class="service-text">
+      <div class="services-list">
+        <div class="service-item service-1" data-image="images/service-image-1.png">
+          <div class="service-content">
+            <h3>UX Design</h3>
+            <p>At the heart of what we do is understanding your users and business goals, designing solutions that truly make an impact.</p>
           </div>
+          <div class="timer-line"><div class="timer-fill"></div></div>
+        </div>
+        
+        <div class="service-item service-2" data-image="images/service-image-2.png">
+          <div class="service-content">
+            <h3>Visual Design</h3>
+            <p>Your users deserve an interface that feels effortless. We ensure every click, swipe, and scroll feels just right.</p>
+          </div>
+          <div class="timer-line"><div class="timer-fill"></div></div>
+        </div>
+        
+        <div class="service-item service-3" data-image="images/service-image-3.png">
+          <div class="service-content">
+            <h3>Development</h3>
+            <p>Our team builds scalable, performance-driven web and mobile app platforms, tailored to your business needs.</p>
+          </div>
+          <div class="timer-line"><div class="timer-fill"></div></div>
+        </div>
       </div>
-      <div class="service-image">
-          <img src="images/image1.png" alt="Service Image" id="serviceImage">
-      </div>
+    </div>
+    <div class="service-image">
+      <img src="images/image1.png" alt="Service Image" id="serviceImage">
+    </div>
   </div>
+
   <div class="button-container">
     <a href="#" class="cta-button learn-more-btn">More About Services</a>
-</div>
+  </div>
 </section>
 
 <section class="section-6">
@@ -151,7 +154,7 @@
     
     <div class="projects-grid">
       <!-- Project 1 -->
-      <div class="project-card">
+      <div class="project-card reveal-hidden">
         <img src="images/image 83.png" alt="Fankaarist Project" class="project-image">
         <div class="project-info">
           <h3>Fankaarist</h3>
@@ -165,7 +168,7 @@
       </div>
 
       <!-- Project 2 -->
-      <div class="project-card">
+      <div class="project-card reveal-hidden">
         <img src="images/image 84.png" alt="Taste Project" class="project-image">
         <div class="project-info">
           <h3>Fankaarist</h3>
@@ -179,7 +182,7 @@
       </div>
 
       <!-- Project 3 -->
-      <div class="project-card">
+      <div class="project-card reveal-hidden">
         <img src="images/Frame 344.png" alt="Fitonist Stats" class="project-image">
         <div class="project-info">
           <h3>Fankaarist</h3>
@@ -193,7 +196,7 @@
       </div>
 
       <!-- Project 4 -->
-      <div class="project-card">
+      <div class="project-card reveal-hidden">
         <img src="images/Frame 344.png" alt="Fitonist Analytics" class="project-image">
         <div class="project-info">
           <h3>Fankaarist</h3>
@@ -210,13 +213,13 @@
 </section>
 
 <section class="section-7">
-  <div class="section-7-left reveal-slide-up">
+  <div class="section-7-left reveal-hidden">
     <h2 class="capability-title">Capability Areas</h2>
     <h1 class="capability-heading"><span>We make successful</span><br>digital products that<br>create results.</h1>
     <a href="#" class="collaborate-button cta-button">Let's Talk</a>
   </div>
   
-  <div class="capabilities-container reveal-slide-up" style="--delay: 0.2s">
+  <div class="capabilities-container reveal-hidden" style="--delay: 0.2s">
     <div class="capability-group active">
       <div class="capability-header">Research</div>
       <ul class="capability-list">
@@ -268,15 +271,15 @@
 </section>
 
 <section class="section-8">
-  <div class="results-container reveal-slide-up">
-    <h1 class="results-title">Results that we produced        <br>are amazingly good...</h1>
+  <div class="results-container reveal-hidden">
+    <h1 class="results-title">Our results speak<br>for themselves</h1>
     
     
     <div class="stats-container">
       <div class="stat-item" style="--index: 0">
         <div class="stat-number">
           <span class="counter" data-target="78">0</span>
-          <span>M</span>
+          <span>M+</span>
         </div>
         <p class="stat-description">Total funds raised by our customers, with a small part from our team.</p>
       </div>
@@ -301,8 +304,8 @@
 </section>
 
 <section class="section-9">
-  <div class="reviews-container reveal-slide-up">
-    <h1 class="reviews-title">and our clients are super<br>delighted and happy.</h1>
+  <div class="reviews-container reveal-hidden">
+    <h1 class="reviews-title reveal-child">What our clients<br>say about us</h1>
     
     <div class="reviews-slider">
       <div class="review active">
@@ -337,7 +340,7 @@
 </section>
 
 <section class="section-10">
-  <div class="pricing-container reveal-slide-up">
+  <div class="pricing-container reveal-hidden">
     <div class="pricing-header">
       <h1 class="pricing-title">
         <span class="gray-text">Partnerships built</span><br>
@@ -362,9 +365,9 @@
 </section>
 
 <section class="section-11">
-  <div class="cta-container reveal-slide-up">
-    <h1 class="cta-title">Ready to create something<br>amazing that people love?</h1>
-    <a href="#" class="lets-talk-button cta-button">Let's Talk</a>
+  <div class="cta-container reveal-hidden">
+    <h1 class="cta-title reveal-child">Ready to create something<br>amazing that people love?</h1>
+    <a href="#" class="lets-talk-button cta-button reveal-child">Let's Talk</a>
   </div>
 </section>
 
@@ -410,6 +413,7 @@
 
   
   <script src="scripts/animations.js"></script>
+  <script src="scripts/reveal.js"></script>
   <script src="scripts/header.js"></script>
   <script src="scripts/section-3-text-hover.js"></script>
   <script src="scripts/section-4.js"></script>
