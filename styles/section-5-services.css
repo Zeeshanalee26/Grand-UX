@@ -225,9 +225,6 @@
   inset: 0;
   border-radius: 4px;
   opacity: 0;
-  box-shadow: 
-    0 10px 50px -20px rgba(0, 0, 0, 0.1),
-    0 5px 20px -5px rgba(0, 0, 0, 0.05);
   transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
@@ -369,7 +366,6 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.1);
   transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
