@@ -29,7 +29,8 @@
 
 .text-reveal {
   display: inline-block;
-  overflow: hidden;
+  overflow: visible;
+  height: auto;
 }
 
 .text-reveal__content {
@@ -37,6 +38,7 @@
   transform: translateY(101%);
   will-change: transform;
   transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1);
+  height: auto;
 }
 
 .text-reveal.active .text-reveal__content {

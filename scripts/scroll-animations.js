@@ -10,19 +10,13 @@ class TextAnimator {
 
   wrapTextElements() {
     const textElements = document.querySelectorAll(`
-      h1:not(.logo-text),
-      h2:not(.logo-text),
-      h3:not(.logo-text),
+      h1:not(.logo-text):not(.service-content h3):not(.project-info h3):not(.model-title),
+      h2:not(.logo-text):not(.model-title),
+      h3:not(.logo-text):not(.service-content h3):not(.project-info h3):not(.model-title),
       .hero-subtitle,
       .section-3-text .text-line span,
       .service-header h2,
       .service-header h1,
-      .service-item h3,
-      .service-item p,
-      .section-6-header .label,
-      .section-6-header .title,
-      .project-info h3,
-      .project-info p,
       .capability-title,
       .capability-heading,
       .results-title,
@@ -30,8 +24,6 @@ class TextAnimator {
       .review-text,
       .pricing-title,
       .pricing-subtitle,
-      .model-title,
-      .model-description,
       .cta-title
     `);
 
