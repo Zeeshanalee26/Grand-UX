@@ -4,8 +4,17 @@ class ReviewsSlider {
     this.reviews = Array.from(document.querySelectorAll('.review'));
     this.currentIndex = 0;
     this.isAnimating = false;
+    this.swipeIndicator = this.slider.querySelector('.swipe-indicator');
+    this.hasUserSwiped = false;
     
-    // Initialize reviews
+    this.setupReviews();
+    this.setupNavigation();
+    this.setupCursor();
+    this.setupTouchEvents();
+    this.setupSwipeButtons();
+  }
+
+  setupReviews() {
     this.reviews.forEach((review, index) => {
       if (index === 0) {
         review.style.display = 'flex';
@@ -15,12 +24,67 @@ class ReviewsSlider {
         review.classList.add('slide-right');
       }
     });
+  }
 
-    this.setupNavigation();
-    this.setupCursor();
+  setupTouchEvents() {
+    if (!this.isMobile()) return;
+
+    let startX = 0;
+    let currentTranslate = 0;
+
+    const touchStart = (e) => {
+      if (this.isAnimating) return;
+      startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+      
+      // Hide indicator on first interaction
+      if (!this.hasUserSwiped && this.swipeIndicator) {
+        this.hasUserSwiped = true;
+        this.swipeIndicator.classList.add('fade-out');
+        
+        // Remove the indicator after animation
+        setTimeout(() => {
+          this.swipeIndicator.style.display = 'none';
+        }, 600);
+      }
+    };
+
+    const touchMove = (e) => {
+      if (this.isAnimating) return;
+      e.preventDefault();
+      
+      const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+      const diff = currentX - startX;
+      
+      const resistance = 0.5;
+      currentTranslate = diff * resistance;
+      
+      const currentReview = this.reviews[this.currentIndex];
+      currentReview.style.transform = `translateX(${currentTranslate}px)`;
+      currentReview.style.transition = 'none';
+    };
+
+    const touchEnd = () => {
+      if (this.isAnimating) return;
+      
+      const currentReview = this.reviews[this.currentIndex];
+      currentReview.style.transition = 'all 0.6s cubic-bezier(0.65, 0, 0.35, 1)';
+      currentReview.style.transform = '';
+      
+      if (Math.abs(currentTranslate) > 50) {
+        this.navigate(currentTranslate < 0 ? 'next' : 'prev');
+      }
+      
+      currentTranslate = 0;
+    };
+
+    this.slider.addEventListener('touchstart', touchStart, { passive: true });
+    this.slider.addEventListener('touchmove', touchMove, { passive: false });
+    this.slider.addEventListener('touchend', touchEnd);
   }
 
   setupNavigation() {
+    if (this.isMobile()) return;
+
     const leftNav = document.createElement('div');
     const rightNav = document.createElement('div');
     leftNav.className = 'nav-area nav-left';
@@ -28,14 +92,15 @@ class ReviewsSlider {
     leftNav.style.cssText = 'position: absolute; left: 0; top: 0; width: 50%; height: 100%; z-index: 2; cursor: none;';
     rightNav.style.cssText = 'position: absolute; right: 0; top: 0; width: 50%; height: 100%; z-index: 2; cursor: none;';
 
-    leftNav.addEventListener('click', () => this.navigate('prev', true));
-    rightNav.addEventListener('click', () => this.navigate('next', true));
+    leftNav.addEventListener('click', () => this.navigate('prev'));
+    rightNav.addEventListener('click', () => this.navigate('next'));
 
     this.slider.appendChild(leftNav);
     this.slider.appendChild(rightNav);
   }
 
   setupCursor() {
+    if (this.isMobile()) return;
     const cursor = document.createElement('div');
     cursor.className = 'cursor-dot';
     document.body.appendChild(cursor);
@@ -58,8 +123,8 @@ class ReviewsSlider {
     rightNav.addEventListener('mouseleave', () => cursor.classList.remove('active', 'next'));
   }
 
-  navigate(direction, isUserClick = false) {
-    if (this.isAnimating && !isUserClick) return;
+  navigate(direction) {
+    if (this.isAnimating) return;
     this.isAnimating = true;
 
     const currentReview = this.reviews[this.currentIndex];
@@ -67,6 +132,11 @@ class ReviewsSlider {
       ? (this.currentIndex + 1) % this.reviews.length 
       : (this.currentIndex - 1 + this.reviews.length) % this.reviews.length;
     const nextReview = this.reviews[nextIndex];
+
+    currentReview.style.transition = '';
+    currentReview.style.transform = '';
+    nextReview.style.transition = '';
+    nextReview.style.transform = '';
 
     currentReview.classList.add(direction === 'next' ? 'slide-left' : 'slide-right');
     currentReview.classList.remove('active');
@@ -81,6 +151,35 @@ class ReviewsSlider {
       currentReview.classList.remove('slide-left', 'slide-right');
       currentReview.classList.add(direction === 'next' ? 'slide-right' : 'slide-left');
     }, 600);
+  }
+
+  isMobile() {
+    return window.innerWidth <= 1023;
+  }
+
+  resetSwipeIndicator() {
+    if (!this.isMobile()) return;
+    
+    this.hasUserSwiped = false;
+    if (this.swipeIndicator) {
+      this.swipeIndicator.style.display = 'flex';
+      this.swipeIndicator.classList.remove('fade-out');
+    }
+  }
+
+  setupSwipeButtons() {
+    if (!this.isMobile()) return;
+
+    const prevButtons = document.querySelectorAll('.swipe-button.prev');
+    const nextButtons = document.querySelectorAll('.swipe-button.next');
+
+    prevButtons.forEach(button => {
+      button.addEventListener('click', () => this.navigate('prev'));
+    });
+
+    nextButtons.forEach(button => {
+      button.addEventListener('click', () => this.navigate('next'));
+    });
   }
 }
 

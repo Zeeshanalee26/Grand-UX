@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="styles/section-11-contact.css">
   <link rel="stylesheet" href="styles/footer.css">
   <link rel="stylesheet" href="styles/scroll-animations.css">
+  <link rel="stylesheet" href="styles/section-3-mobile-only.css">
 </head>
 <body>
 
@@ -46,12 +47,42 @@
   <section class="hero-section">
     <div class="hero-content reveal-text-group">
       <h1 class="hero-title">Digital design and development agency.</h1>
-      <p class="hero-subtitle reveal-text">Helping startups, scale-ups, and businesses create designs that enhance user experiences and drive growth.</p>
+      <p class="hero-subtitle reveal-text">Helping startups, scale-ups and businesses create designs that enhance user experiences and drive growth.</p>
     </div>
   </section>
 
 <section class="section-2">
   <img src="images/rightbelowhero.png" alt="Full viewport image" class="section-2-image">
+</section>
+
+<section class="section-3-mobile-only">
+  <h2 class="section-3-mobile-only__heading">Helping companies with:</h2>
+  <div class="section-3-mobile-only__services-list">
+    <div class="section-3-mobile-only__service-item">
+      <span>User Research</span>
+    </div>
+    <div class="section-3-mobile-only__service-item">
+      <span>UI/UX Design</span>
+    </div>
+    <div class="section-3-mobile-only__service-item">
+      <span>Product Design</span>
+    </div>
+    <div class="section-3-mobile-only__service-item">
+      <span>App Design</span>
+    </div>
+    <div class="section-3-mobile-only__service-item">
+      <span>Website Design</span>
+    </div>
+    <div class="section-3-mobile-only__service-item">
+      <span>Design System</span>
+    </div>
+    <div class="section-3-mobile-only__service-item">
+      <span>Website Development</span>
+    </div>
+    <div class="section-3-mobile-only__service-item">
+      <span>App Development</span>
+    </div>
+  </div>
 </section>
 
 <div class="section-3">
@@ -133,15 +164,13 @@
           </div>
           <div class="timer-line"><div class="timer-fill"></div></div>
         </div>
+
+        <a href="#" class="cta-button learn-more-btn">More About Services</a>
       </div>
     </div>
     <div class="service-image">
       <img src="images/image1.png" alt="Service Image" id="serviceImage">
     </div>
-  </div>
-
-  <div class="button-container">
-    <a href="#" class="cta-button learn-more-btn">More About Services</a>
   </div>
 </section>
 
@@ -213,60 +242,62 @@
 </section>
 
 <section class="section-7">
-  <div class="section-7-left reveal-hidden">
-    <h2 class="capability-title">Capability Areas</h2>
-    <h1 class="capability-heading"><span>We make successful</span><br>digital products that<br>create results.</h1>
-    <a href="#" class="collaborate-button cta-button">Let's Talk</a>
-  </div>
-  
-  <div class="capabilities-container reveal-hidden" style="--delay: 0.2s">
-    <div class="capability-group active">
-      <div class="capability-header">Research</div>
-      <ul class="capability-list">
-        <li class="capability-item">User Interviews</li>
-        <li class="capability-item">Surveys</li>
-        <li class="capability-item">Competitive Analysis</li>
-        <li class="capability-item">Usability Testing</li>
-        <li class="capability-item">A/B testing</li>
-        <li class="capability-item">User Journey Mapping</li>
-        <li class="capability-item">Persona Creation</li>
-        <li class="capability-item">Discovery Workshops</li>
-        <li class="capability-item">UX Audit</li>
-      </ul>
+  <div class="section-7-wrapper">
+    <div class="section-7-left">
+      <h2 class="capability-title">Capability Areas</h2>
+      <h1 class="capability-heading"><span>We make successful</span><br>digital products that<br>create results.</h1>
+      <a href="#" class="collaborate-button cta-button desktop-button">Let's Talk</a>
     </div>
+    <div class="capabilities-container reveal-hidden" style="--delay: 0.2s">
+      <div class="capability-group" data-group="research">
+        <div class="capability-header">Research</div>
+        <ul class="capability-list">
+          <li class="capability-item">User Interviews</li>
+          <li class="capability-item">Surveys</li>
+          <li class="capability-item">Competitive Analysis</li>
+          <li class="capability-item">Usability Testing</li>
+          <li class="capability-item">A/B testing</li>
+          <li class="capability-item">User Journey Mapping</li>
+          <li class="capability-item">Persona Creation</li>
+          <li class="capability-item">Discovery Workshops</li>
+          <li class="capability-item">UX Audit</li>
+        </ul>
+      </div>
 
-    <div class="capability-group">
-      <div class="capability-header">Design</div>
-      <ul class="capability-list">
-        <li class="capability-item">User Interface (UI) Design</li>
-        <li class="capability-item">User Experience (UX) Design</li>
-        <li class="capability-item">Information Architecture</li>
-        <li class="capability-item">Wireframing & Prototyping</li>
-        <li class="capability-item">Usability Testing</li>
-        <li class="capability-item">Website Design</li>
-        <li class="capability-item">Product Design</li>
-        <li class="capability-item">App Design</li>
-        <li class="capability-item">Design Systems</li>
-        <li class="capability-item">Interaction Design</li>
-        <li class="capability-item">Motion Design</li>
-      </ul>
-    </div>
+      <div class="capability-group">
+        <div class="capability-header">Design</div>
+        <ul class="capability-list">
+          <li class="capability-item">User Interface (UI) Design</li>
+          <li class="capability-item">User Experience (UX) Design</li>
+          <li class="capability-item">Information Architecture</li>
+          <li class="capability-item">Wireframing & Prototyping</li>
+          <li class="capability-item">Usability Testing</li>
+          <li class="capability-item">Website Design</li>
+          <li class="capability-item">Product Design</li>
+          <li class="capability-item">App Design</li>
+          <li class="capability-item">Design Systems</li>
+          <li class="capability-item">Interaction Design</li>
+          <li class="capability-item">Motion Design</li>
+        </ul>
+      </div>
 
-    <div class="capability-group">
-      <div class="capability-header">Development</div>
-      <ul class="capability-list">
-        <li class="capability-item">Front-end Development</li>
-        <li class="capability-item">Back-end Development</li>
-        <li class="capability-item">System Architecture</li>
-        <li class="capability-item">CMS Implementation</li>
-        <li class="capability-item">WordPress</li>
-        <li class="capability-item">Android/iOS Native Apps</li>
-        <li class="capability-item">E-Commerce Integration</li>
-        <li class="capability-item">Quality Assurance & Testing</li>
-        <li class="capability-item">Performance Optimization</li>
-        <li class="capability-item">Support & Maintenance</li>
-      </ul>
+      <div class="capability-group">
+        <div class="capability-header">Development</div>
+        <ul class="capability-list">
+          <li class="capability-item">Front-end Development</li>
+          <li class="capability-item">Back-end Development</li>
+          <li class="capability-item">System Architecture</li>
+          <li class="capability-item">CMS Implementation</li>
+          <li class="capability-item">WordPress</li>
+          <li class="capability-item">Android/iOS Native Apps</li>
+          <li class="capability-item">E-Commerce Integration</li>
+          <li class="capability-item">Quality Assurance & Testing</li>
+          <li class="capability-item">Performance Optimization</li>
+          <li class="capability-item">Support & Maintenance</li>
+        </ul>
+      </div>
     </div>
+    <a href="#" class="collaborate-button cta-button mobile-button">Let's Talk</a>
   </div>
 </section>
 
@@ -312,8 +343,19 @@
         <p class="review-text">"Grand's approach to design was a game changer for us. They truly understood our needs and helped us create something our customers love."</p>
         <div class="review-author">
           <p class="author-name">Mia Paveli, Executive Director, Camping Šimuni</p>
-          
         </div>
+      </div>
+          <div class="swipe-controls">
+            <button class="swipe-button prev">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="swipe-button next">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
       </div>
 
       <div class="review">
@@ -434,5 +476,6 @@
   <script src="scripts/section-8.js"></script>
   <script src="scripts/section-9.js"></script>
   <script src="scripts/scroll-animations.js"></script>
+  <script src="scripts/section-3-mobile.js"></script>
 </body>
 </html>

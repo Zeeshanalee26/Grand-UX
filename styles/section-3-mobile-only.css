@@ -1,0 +1,52 @@
+.section-3-mobile-only {
+  width: 100%;
+  background-color: black;
+  padding: 48px 20px;
+  display: none;
+  min-height: 100vh;
+}
+
+.section-3-mobile-only__heading {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 460;
+  color: rgb(255, 255, 255);
+  margin-bottom: 40px;
+}
+
+.section-3-mobile-only__services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-3-mobile-only__service-item {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 460;
+  color: rgba(131, 141, 151, 1);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  transform: scale(1);
+  transform-origin: left center;
+}
+
+.section-3-mobile-only__service-item.active {
+  color: white;
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 40px;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 767px) {
+  .section-3-mobile-only {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section-3-mobile-only {
+    display: none;
+  }
+} 

@@ -1,16 +1,22 @@
 .section-7 {
+  width: 100vw;
   background-color: #000;
   color: #fff;
   padding: 140px 172px;
   min-height: 100vh;
   height: auto;
-  display: grid;
-  grid-template-columns: 510px 446px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.section-7-wrapper {
+  width: 100%;
+  max-width: 1440px;
+  display: flex;
   gap: 140px;
   justify-content: space-between;
-  overflow: visible;
   position: relative;
-  margin-top: 0;
 }
 
 .section-7-left {
@@ -20,7 +26,6 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
-  margin: 0;
   padding-top: 40px;
   will-change: transform;
   transform: translateZ(0);
@@ -65,9 +70,9 @@
 }
 
 .capabilities-container {
+  width: 446px;
   display: flex;
   flex-direction: column;
-  width: 446px;
   height: auto;
   min-height: 753px;
   margin-top: 50px;
@@ -210,3 +215,201 @@ html {
   opacity: 1;
   transform: translateY(0);
 } 
+
+.collaborate-button.mobile-button {
+  display: none;
+  position: relative;
+}
+
+.collaborate-button.desktop-button {
+  display: inline-flex; 
+}
+
+/* Mobile (320px to 767px) */
+@media screen and (max-width: 767px) {
+  .section-7 {
+    padding: 64px 24px;
+    min-height: auto;
+  }
+
+  .section-7-wrapper {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .section-7-left {
+    width: 100%;
+    height: auto;
+    padding: 0;
+    gap: 16px;
+  }
+
+  .capability-title {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0;
+  }
+
+  .capability-heading {
+    font-size: 36px;
+    line-height: 42px;
+    margin: 0;
+  }
+
+  .collaborate-button.desktop-button {
+    display: none;
+  }
+
+  .collaborate-button.mobile-button {
+    display: flex;
+    width: 100%;
+    margin: 0;
+  }
+
+  .capabilities-container {
+    width: 100%;
+    padding-block: 40px;
+    min-height: auto;
+    margin: 0;
+  }
+
+  .capabilities-container, 
+  .collaborate-button.mobile-button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .collaborate-button.mobile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px 0;
+    margin: 0 auto;
+  }
+
+  .capability-group {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .capability-header {
+    font-size: 24px;
+    line-height: 32px;
+    padding: 24px 0;
+  }
+
+  .capability-list {
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  .capability-item {
+    font-size: 18px;
+    line-height: 36px;
+    padding-left: 16px;
+  }
+
+  .capability-item::before {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Tablet (768px to 1023px) */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .section-7 {
+    padding: 60px 40px;
+  }
+
+  .section-7-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .collaborate-button.desktop-button {
+    display: none;
+  }
+
+  .collaborate-button.mobile-button {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin-top: 40px;
+    left: auto;
+    transform: none;
+    bottom: auto;
+  }
+
+  .capabilities-container {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .collaborate-button.mobile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 0;
+  }
+}
+
+/* Laptop and larger screens (1024px and up) */
+@media screen and (min-width: 1024px) {
+  .collaborate-button.mobile-button {
+    display: none;
+  }
+
+  .collaborate-button.desktop-button {
+    display: inline-flex;
+  }
+}
+
+/* Laptop (1024px to 1439px) */
+@media screen and (min-width: 1024px) and (max-width: 1439px) {
+  .section-7 {
+    padding: 100px 60px;
+  }
+
+  .section-7-wrapper {
+    gap: 80px;
+  }
+
+  .collaborate-button.mobile-button {
+    display: none;
+  }
+
+  .collaborate-button.desktop-button {
+    display: inline-flex;
+  }
+
+  .capability-title {
+    font-size: 28px;
+  }
+
+  .capability-heading {
+    font-size: 48px;
+    line-height: 58px;
+  }
+}
+
+/* Large Desktop (1920px and up) */
+@media screen and (min-width: 1920px) {
+  .section-7-wrapper {
+    max-width: calc(1440px * (100vw/1440));
+    gap: calc(140px * (100vw/1440));
+  }
+
+  .capability-title {
+    font-size: calc(30px * (100vw/1440));
+  }
+
+  .capability-heading {
+    font-size: calc(54px * (100vw/1440));
+    line-height: calc(64px * (100vw/1440));
+  }
+} 
+

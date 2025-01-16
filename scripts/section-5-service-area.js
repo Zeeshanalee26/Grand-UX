@@ -193,4 +193,72 @@ document.addEventListener('DOMContentLoaded', function() {
   
     initialize();
     startAutoplay();
-  });
+
+    function initializeMobileLayout() {
+        if (window.innerWidth <= 1023) {
+            const serviceItems = document.querySelectorAll('.service-item');
+            let activeItem = null;
+
+            // Clear any existing mobile setup
+            serviceItems.forEach(item => {
+                const existingImage = item.querySelector('.service-image');
+                if (existingImage) {
+                    existingImage.remove();
+                }
+            });
+
+            // Setup mobile layout
+            serviceItems.forEach(item => {
+                // Create and insert image container
+                const image = item.getAttribute('data-image');
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'service-image';
+                imageContainer.innerHTML = `<img src="${image}" alt="Service Image">`;
+                
+                const content = item.querySelector('.service-content');
+                item.insertBefore(imageContainer, content);
+
+                // Add click handler
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    if (activeItem === item) {
+                        item.classList.remove('active');
+                        activeItem = null;
+                    } else {
+                        if (activeItem) {
+                            activeItem.classList.remove('active');
+                        }
+                        
+                        setTimeout(() => {
+                            item.classList.add('active');
+                            activeItem = item;
+                            
+                            // Scroll into view if needed
+                            const itemRect = item.getBoundingClientRect();
+                            const isVisible = (itemRect.top >= 0) && 
+                                            (itemRect.bottom <= window.innerHeight);
+                            
+                            if (!isVisible) {
+                                item.scrollIntoView({ 
+                                    behavior: 'smooth', 
+                                    block: 'start',
+                                    inline: 'nearest'
+                                });
+                            }
+                        }, activeItem ? 300 : 0);
+                    }
+                });
+            });
+
+            // Disable desktop functionality
+            if (typeof slideInterval !== 'undefined') {
+            clearInterval(slideInterval);
+            }
+        }
+    }
+
+    // Call initializeMobileLayout on page load and resize
+    window.addEventListener('resize', initializeMobileLayout);
+    document.addEventListener('DOMContentLoaded', initializeMobileLayout);
+});

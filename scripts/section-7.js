@@ -1,42 +1,65 @@
 class CapabilitySection {
   constructor() {
-    this.groups = document.querySelectorAll('.capability-group');
     this.activeGroup = null;
-    this.initializeGroups();
-    this.openDefaultGroup();
+    this.init();
   }
 
-  initializeGroups() {
-    this.groups.forEach(group => {
-      group.classList.remove('active');
-      
+  init() {
+    const groups = document.querySelectorAll('.capability-group');
+    const isMobile = window.innerWidth <= 1023;
+
+    const researchGroup = document.querySelector('.capability-group[data-group="research"]');
+    if (researchGroup) {
+      this.toggleCapabilityGroup(researchGroup, true);
+      this.activeGroup = researchGroup;
+    }
+
+    groups.forEach(group => {
       const header = group.querySelector('.capability-header');
       header.addEventListener('click', () => {
-        if (this.activeGroup === group) {
-          // Smooth closing animation
-          group.classList.remove('active');
+        if (group === this.activeGroup) {
+          this.toggleCapabilityGroup(group, false);
           this.activeGroup = null;
           return;
         }
 
-        // Smooth transition between groups
         if (this.activeGroup) {
-          this.activeGroup.classList.remove('active');
+          this.toggleCapabilityGroup(this.activeGroup, false);
         }
 
-        requestAnimationFrame(() => {
-          group.classList.add('active');
-          this.activeGroup = group;
-        });
+        this.toggleCapabilityGroup(group, true);
+        this.activeGroup = group;
       });
     });
   }
 
-  openDefaultGroup() {
-    const firstGroup = this.groups[0];
-    if (firstGroup) {
-      firstGroup.classList.add('active');
-      this.activeGroup = firstGroup;
+  toggleCapabilityGroup(group, shouldOpen) {
+    const list = group.querySelector('.capability-list');
+    const items = group.querySelectorAll('.capability-item');
+    const isMobile = window.innerWidth <= 1023;
+
+    if (shouldOpen) {
+      group.classList.add('active');
+      if (isMobile) {
+        list.style.maxHeight = `${list.scrollHeight}px`;
+        list.style.opacity = '1';
+        items.forEach((item, index) => {
+          setTimeout(() => {
+            item.style.transform = 'translateY(0)';
+            item.style.opacity = '1';
+          }, index * 50);
+        });
+      }
+    } else {
+      group.classList.remove('active');
+      if (isMobile) {
+        list.style.maxHeight = '0px';
+        list.style.opacity = '0';
+        items.forEach(item => {
+          item.style.transform = 'translateY(20px)';
+          item.style.opacity = '0';
+        });
+      }
     }
   }
 }
@@ -44,28 +67,3 @@ class CapabilitySection {
 document.addEventListener('DOMContentLoaded', () => {
   new CapabilitySection();
 });
-
-function toggleCapabilityGroup(group) {
-  const isActive = group.classList.contains('active');
-  
-  // Close all groups first
-  document.querySelectorAll('.capability-group').forEach(g => {
-    g.classList.remove('active');
-  });
-
-  if (!isActive) {
-    group.classList.add('active');
-    // Add staggered animation to items
-    const items = group.querySelectorAll('.capability-item');
-    items.forEach((item, index) => {
-      item.style.transitionDelay = `${index * 0.05}s`;
-    });
-  }
-}
-
-document.querySelectorAll('.capability-header').forEach(header => {
-  header.addEventListener('click', () => {
-    const group = header.parentElement;
-    toggleCapabilityGroup(group);
-  });
-}); 

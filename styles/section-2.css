@@ -1,19 +1,109 @@
 .section-2 {
   width: 100%;
-  height: 904px;  
+  height: 50vh;
   position: relative;
   overflow: hidden;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   opacity: 1;
   visibility: visible;
   transform: none;
+  margin-top: 0;
+  background-color: black;
 }
 
 .section-2-image {
-  width: 1522px;  
-  height: 904px;  
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: block;
-  max-width: 100%; 
+}
+
+/* Small phones (375px and up) */
+@media screen and (min-width: 375px) {
+  .section-2-image {
+    aspect-ratio: 375/520;
+  }
+}
+
+/* Medium phones (390px and up) */
+@media screen and (min-width: 390px) {
+  .section-2 {
+    width: 390px;
+    height: 50vh;
+  }
+  
+  .section-2-image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Tablet (768px and up) */
+@media screen and (min-width: 768px) {
+  .section-2 {
+    width: 100%;
+    height: 50vh;
+  }
+  
+  .section-2-image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Tablet (Landscape) & Small Desktop */
+@media screen and (min-width: 1024px) {
+  .section-2 {
+    height: 100vh;
+  }
+
+  .section-2-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Regular Desktop */
+@media screen and (min-width: 1440px) {
+  .section-2 {
+    height: 100vh;
+  }
+  
+  .section-2-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 100vh;
+  }
+}
+
+/* Large Desktop */
+@media screen and (min-width: 1920px) {
+  .section-2 {
+    height: 100vh;
+  }
+  
+  .section-2-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 100vh;
+  }
+}
+
+/* Extra Large Screens */
+@media screen and (min-width: 2560px) {
+  .section-2 {
+    height: 100vh;
+  }
+  
+  .section-2-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 100vh;
+  }
 }
