@@ -90,7 +90,7 @@
 /* Large Desktop */
 @media screen and (min-width: 1920px) {
   .section-4 {
-    padding: 120px 0;
+    padding: 100px 264px 30px 264px;
   }
 
   .logo-container {
@@ -103,18 +103,3 @@
   }
 }
 
-/* Extra Large Screens */
-@media screen and (min-width: 2560px) {
-  .section-4 {
-    padding: 160px 0;
-  }
-
-  .logo-container {
-    max-width: 1600px;
-  }
-
-  .logo {
-    flex: 0 0 320px;
-    padding: 0 80px;
-  }
-}

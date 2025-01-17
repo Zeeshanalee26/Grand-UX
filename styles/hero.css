@@ -33,7 +33,6 @@
 .hero-title {
   font-size: 44px;
   line-height: 44px;
-  font-weight: 400;
   color: white;
   width: 100%;
   text-align: left;
@@ -46,7 +45,6 @@
 .hero-subtitle {
   font-size: 22px;
   line-height: 24px;
-  font-weight: 300;
   color: rgba(131, 141, 151, 1);
   text-align: left;
   width: 100%;
@@ -164,7 +162,6 @@
     line-height: 1.1;
     margin-bottom: 48px;
     text-align: center;
-    font-weight: 620;
     max-width: none;
   }
 
@@ -173,7 +170,6 @@
     line-height: 1.375;
     text-align: center;
     max-width: 852px;
-    font-weight: 400;
   }
 }
 
@@ -198,33 +194,30 @@
 /* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
   .hero-section {
-    height: 100vh;
+    width: 1920px;
+    height: 1080px;
+  }
+
+  .hero-content {
+    width: 1248px;
+    height: 372px;
+    padding: 0;
   }
 
   .hero-title {
-    font-size: calc(100px * (100vw/1440));
-    line-height: calc(110px * (100vw/1440));
+    width: 1170px;
+    height: 232px;
+    font-size: 110px;
+    line-height: 116px;
+    margin-bottom: 56px;
+    font-weight: 620;
   }
 
   .hero-subtitle {
-    font-size: calc(32px * (100vw/1440));
-    line-height: calc(44px * (100vw/1440));
-  }
-}
-
-/* Extra Large Desktop (2560px and up) */
-@media screen and (min-width: 2560px) {
-  .hero-section {
-    height: 100vh;
-  }
-
-  .hero-title {
-    font-size: calc(100px * (100vw/1440));
-    line-height: calc(110px * (100vw/1440));
-  }
-
-  .hero-subtitle {
-    font-size: calc(32px * (100vw/1440));
-    line-height: calc(44px * (100vw/1440));
+    width: 860px;
+    height: 84px;
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: 460;
   }
 }

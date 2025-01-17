@@ -123,38 +123,18 @@
 /* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
     .section-3 {
-        max-width: calc(1440px * (100vw/1440));
-        padding: 235px calc(220px * (100vw/1440));
+        width: 1920px;
+        height: 1080px;
     }
 
     .section-3-text {
-        font-size: calc(90px * (100vw/1440));
-        line-height: calc(90px * (100vw/1440));
-        max-width: calc(1248px * (100vw/1440));
-    }
-
-    .white-text::after {
-        height: calc(8px * (100vw/1440));
-        bottom: calc(-4px * (100vw/1440));
-    }
-}
-
-/* Extra Large Desktop (2560px and up) */
-@media screen and (min-width: 2560px) {
-    .section-3 {
-        max-width: calc(1440px * (100vw/1440));
-        padding: 235px calc(220px * (100vw/1440));
-    }
-
-    .section-3-text {
-        font-size: calc(90px * (100vw/1440));
-        line-height: calc(90px * (100vw/1440));
-        max-width: calc(1248px * (100vw/1440));
-    }
-
-    .white-text::after {
-        height: calc(8px * (100vw/1440));
-        bottom: calc(-4px * (100vw/1440));
+        max-width: 1105px;
+        max-height: 470px;
+        width: 100%;
+        height: 100%;
+        font-size: 90px;
+        line-height: 94px;
+        font-weight: 460;
+        text-align: left;
     }
 }
-

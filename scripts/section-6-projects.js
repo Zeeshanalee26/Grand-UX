@@ -11,6 +11,27 @@ class ProjectReveal {
     this.initializeObserver();
     this.setupCustomCursor();
     this.setupHoverEffects();
+    this.handleResize();
+
+    // Add resize handler
+    window.addEventListener('resize', () => this.handleResize());
+  }
+
+  handleResize() {
+    const projectCards = document.querySelectorAll('.project-card');
+    const is1920 = window.innerWidth >= 1920;
+    
+    projectCards.forEach((card, index) => {
+      if (index >= 4) {
+        // Handle additional projects
+        const imageContainer = card.querySelector('.project-image-container');
+        if (is1920) {
+          imageContainer.style.aspectRatio = '1384/816';
+        } else {
+          imageContainer.style.aspectRatio = '1160/664';
+        }
+      }
+    });
   }
 
   setupProjects() {
@@ -20,31 +41,25 @@ class ProjectReveal {
       const image = card.querySelector('.project-image');
       const imageParent = image.parentElement;
       
-      // Create wrapper for animation
       const wrapper = document.createElement('div');
       wrapper.className = 'project-wrapper';
       
-      // Create container for image and background
       const container = document.createElement('div');
       container.className = 'project-image-container';
       
-      // Create background element with clip-path
       const background = document.createElement('div');
       background.className = 'project-image-background';
       background.style.backgroundColor = backgroundColors[index % backgroundColors.length];
       
-      // Wrap image in a clip container
       const imageClip = document.createElement('div');
       imageClip.className = 'project-image-clip';
       
-      // Restructure DOM
       imageParent.replaceChild(wrapper, image);
       wrapper.appendChild(container);
       container.appendChild(background);
       container.appendChild(imageClip);
       imageClip.appendChild(image);
 
-      // Add hover animation elements
       const hoverReveal = document.createElement('div');
       hoverReveal.className = 'hover-reveal';
       container.appendChild(hoverReveal);
@@ -76,51 +91,35 @@ class ProjectReveal {
     const background = card.querySelector('.project-image-background');
     const imageClip = card.querySelector('.project-image-clip');
     const image = card.querySelector('.project-image');
-    const info = card.querySelector('.project-info');
 
-    // Initial states
     gsap.set([background, imageClip], { 
       clipPath: 'inset(100% 0% 0% 0%)'
     });
     
     gsap.set(image, {
-      scale: 1.2,
-      opacity: 0,
-      y: 100
-    });
-
-    gsap.set(info, {
-      y: 30,
+      scale: 1.3,
       opacity: 0
     });
 
-    // Animation sequence
     const tl = gsap.timeline({
       defaults: { 
-        ease: "power3.inOut",
+        ease: 'power4.out',
+        duration: 1.2
       }
     });
 
     tl.to(background, {
       clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 0.8
+      duration: 1
     })
     .to(imageClip, {
       clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 0.8
-    }, '-=0.6')
+      duration: 1
+    }, '-=0.8')
     .to(image, {
       scale: 1,
       opacity: 1,
-      y: 0,
-      duration: 1.2,
-      ease: "power2.out"
-    }, '-=0.4')
-    .to(info, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.out"
+      duration: 1.2
     }, '-=0.8');
   }
 
@@ -128,14 +127,12 @@ class ProjectReveal {
     document.querySelectorAll('.project-card').forEach(card => {
       const image = card.querySelector('.project-image');
       const hoverReveal = card.querySelector('.hover-reveal');
-      let isHovering = false;
       
       card.addEventListener('mouseenter', () => {
-        isHovering = true;
         gsap.to(image, {
           scale: 1.1,
-          duration: 1,
-          ease: 'power2.out'
+          duration: 0.8,
+          ease: 'power3.out'
         });
         
         gsap.to(hoverReveal, {
@@ -145,11 +142,10 @@ class ProjectReveal {
       });
 
       card.addEventListener('mouseleave', () => {
-        isHovering = false;
         gsap.to(image, {
           scale: 1,
-          duration: 1,
-          ease: 'power2.out'
+          duration: 0.8,
+          ease: 'power3.out'
         });
         
         gsap.to(hoverReveal, {
@@ -159,16 +155,14 @@ class ProjectReveal {
       });
 
       card.addEventListener('mousemove', (e) => {
-        if (!isHovering) return;
-        
         const bounds = card.getBoundingClientRect();
         const mouseX = e.clientX - bounds.left;
         const mouseY = e.clientY - bounds.top;
         
         gsap.to(image, {
-          duration: 1,
-          x: (mouseX - bounds.width / 2) * 0.03,
-          y: (mouseY - bounds.height / 2) * 0.03,
+          duration: 0.6,
+          x: (mouseX - bounds.width / 2) * 0.05,
+          y: (mouseY - bounds.height / 2) * 0.05,
           ease: 'power3.out'
         });
       });
@@ -176,7 +170,6 @@ class ProjectReveal {
   }
 
   setupCustomCursor() {
-    // Create cursor elements
     const cursor = document.createElement('div');
     cursor.className = 'custom-cursor';
     
@@ -200,7 +193,6 @@ class ProjectReveal {
     let currentX = 0;
     let currentY = 0;
 
-    // Smooth cursor movement
     const moveCursor = () => {
       const ease = 0.15;
       
@@ -218,10 +210,8 @@ class ProjectReveal {
       cursorY = e.clientY;
     });
 
-    // Start the animation
     requestAnimationFrame(moveCursor);
 
-    // Handle cursor visibility and interactions
     document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('mouseenter', () => {
         cursor.classList.add('active');
@@ -241,7 +231,6 @@ class ProjectReveal {
   }
 }
 
-// Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   new ProjectReveal();
 });

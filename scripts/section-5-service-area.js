@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let isHovered = false;
   
     function initialize() {
+        // Remove any existing transforms or animations that might affect positioning
+        serviceItems.forEach(item => {
+            item.style.transform = 'none';
+            const content = item.querySelector('.service-content');
+            if (content) {
+                content.style.transform = 'none';
+            }
+        });
+
         const firstImage = createImage(serviceItems[0].getAttribute('data-image'));
         firstImage.classList.add('active');
         serviceImageContainer.appendChild(firstImage);
@@ -103,28 +112,18 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 const item = entry.target;
                 item.style.visibility = 'visible';
+                item.classList.add('revealed');
                 
-                const rect = item.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const distanceFromCenter = Math.abs((rect.top + rect.height/2) - viewportHeight/2);
-                const delay = (distanceFromCenter / viewportHeight) * 200; 
-                
-                setTimeout(() => {
-                    requestAnimationFrame(() => {
-                        item.classList.add('revealed');
-                        
-                        const content = item.querySelector('.service-content');
-                        if (content) {
-                            content.style.transform = 'scale(1)';
-                            content.style.opacity = '1';
-                        }
-                    });
-                }, delay);
+                const content = item.querySelector('.service-content');
+                if (content) {
+                    content.style.transform = 'none'; // Remove scale transform
+                    content.style.opacity = '1';
+                }
                 
                 serviceObserver.unobserve(item);
             }
         });
-    }, serviceObserverOptions);
+    }, { threshold: 0.1 });
 
     serviceItems.forEach((item, index) => {
         item.style.visibility = 'visible';
@@ -176,16 +175,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const serviceArea = document.querySelector('.service-areas');
     containerObserver.observe(serviceArea);
 
-    const addScrollAnimations = () => {
+    function addScrollAnimations() {
         const scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
         serviceItems.forEach((item, index) => {
             if (item.classList.contains('revealed')) {
-                const offset = (index + 1) * 0.1;
-                const scale = 1 + (scrollProgress * 0.02);
-                item.style.transform = `scale(${scale})`;
+                // Remove any transforms that might affect layout
+                item.style.transform = 'none';
+                
+                // Ensure content stays in place
+                const content = item.querySelector('.service-content');
+                if (content) {
+                    content.style.transform = 'none';
+                }
             }
         });
-    };
+    }
 
     window.addEventListener('scroll', () => {
         requestAnimationFrame(addScrollAnimations);
