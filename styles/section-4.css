@@ -1,0 +1,13 @@
+.section-4 {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  /* ... rest of your styles ... */
+}
+
+.logo-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  /* ... rest of your styles ... */
+} 

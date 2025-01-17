@@ -1,5 +1,7 @@
 .hero-section {
   width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   height: 60vh;
   margin: 0 auto;
   display: flex;
