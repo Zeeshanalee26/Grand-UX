@@ -1,7 +1,7 @@
 .footer {
   width: 100%;
   background-color: #fff;
-  padding: 140px 140px;
+  padding: 100px 100px 40px 100px;
 }
 
 .footer-container {
@@ -15,23 +15,38 @@
 .footer-left {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 12px;
 }
 
 .footer-logo {
-  width: 40px;
-  height: 40px;
+  width: 142px;
+  height: 34px;
 }
 
 .footer-email {
-  font-size: 24px;
+  font-size: 32px;
+  line-height: 46px;
+  font-weight: 460;
   color: #000;
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  margin-bottom: 102px;
+  position: relative;
+  display: inline-block;
 }
 
-.footer-email:hover {
-  opacity: 0.7;
+.footer-email::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #000;
+  transition: width 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.footer-email:hover::after {
+  width: 100%;
 }
 
 .social-links {
@@ -40,18 +55,31 @@
 }
 
 .social-link {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(23, 25, 30, 1);
   text-decoration: none;
-  transition: color 0.3s ease;
+  position: relative;
+  display: inline-block;
 }
 
-.social-link:hover {
-  color: #000;
+.social-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1.5px;
+  bottom: -8px;
+  left: 0;
+  background-color: rgba(23, 25, 30, 1);
+  transition: width 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.social-link:hover::after {
+  width: 100%;
 }
 
 .footer-right {
   display: flex;
-  gap: 120px;
+  gap: 100px;
+  color: rgba(23, 25, 30, 1);
 }
 
 .footer-nav-list,
@@ -61,17 +89,29 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .footer-nav-link {
   color: #000;
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  position: relative;
+  display: inline-block;
 }
 
-.footer-nav-link:hover {
-  opacity: 0.7;
+.footer-nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #000;
+  transition: width 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.footer-nav-link:hover::after {
+  width: 100%;
 }
 
 .footer-address {
@@ -81,10 +121,25 @@
 }
 
 .address {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(23, 25, 30, 1);
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
+}
+
+.footer-email:hover,
+.social-link:hover,
+.footer-nav-link:hover {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .footer-email::after,
+  .social-link::after,
+  .footer-nav-link::after {
+    height: 1.5px;
+    bottom: -3px;
+  }
 }
 
 /* Responsive Styles */

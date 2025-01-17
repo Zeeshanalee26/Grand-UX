@@ -12,20 +12,9 @@
     transform: none;
 }
 
-.section-3-wrapper {
-    width: 100%;
-    max-width: 1440px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px;
-}
-
 .section-3-text {
-    font-size: 36px;
-    line-height: 1.2;
+    font-size: 80px;
+    line-height: 80px;
     font-weight: 460;
     text-align: left;
     max-width: 1248px;
@@ -61,7 +50,6 @@
 
 /* Mobile (375px and up) */
 @media screen and (min-width: 375px) {
-
     .section-3 {
         height: 50vh;
         padding-block: 40px;
@@ -75,7 +63,7 @@
 
 /* Tablet (768px and up) */
 @media screen and (min-width: 768px) {
-    .section-3-wrapper {
+    .section-3 {
         padding: 0 40px;
     }
 
@@ -92,25 +80,38 @@
 
 /* Laptop (1024px and up) */
 @media screen and (min-width: 1024px) {
-    .section-3-wrapper {
-        padding: 0 60px;
+    .section-3 {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
     }
 
     .section-3-text {
-        font-size: 72px;
-        line-height: 1.2;
+        font-size: 90px;
+        line-height: 108px;
+        max-width: 1000px;
+        padding: 0 20px;
+    }
+
+    .text-line {
+        display: block;
+        white-space: nowrap;
     }
 }
 
 /* Desktop (1440px) */
 @media screen and (min-width: 1440px) {
-    .section-3-wrapper {
-        padding: 0 172px;
+    .section-3 {
+        padding: 235px 220px;
     }
 
     .section-3-text {
         font-size: 90px;
         line-height: 90px;
+        max-width: 1200px;
     }
 
     .white-text::after {
@@ -121,9 +122,9 @@
 
 /* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
-    .section-3-wrapper {
+    .section-3 {
         max-width: calc(1440px * (100vw/1440));
-        padding: 0 calc(172px * (100vw/1440));
+        padding: 235px calc(220px * (100vw/1440));
     }
 
     .section-3-text {
@@ -140,9 +141,9 @@
 
 /* Extra Large Desktop (2560px and up) */
 @media screen and (min-width: 2560px) {
-    .section-3-wrapper {
+    .section-3 {
         max-width: calc(1440px * (100vw/1440));
-        padding: 0 calc(172px * (100vw/1440));
+        padding: 235px calc(220px * (100vw/1440));
     }
 
     .section-3-text {
