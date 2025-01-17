@@ -76,37 +76,51 @@ class ProjectReveal {
     const background = card.querySelector('.project-image-background');
     const imageClip = card.querySelector('.project-image-clip');
     const image = card.querySelector('.project-image');
+    const info = card.querySelector('.project-info');
 
-    // Initial state
+    // Initial states
     gsap.set([background, imageClip], { 
       clipPath: 'inset(100% 0% 0% 0%)'
     });
     
     gsap.set(image, {
-      scale: 1.3,
+      scale: 1.2,
+      opacity: 0,
+      y: 100
+    });
+
+    gsap.set(info, {
+      y: 30,
       opacity: 0
     });
 
     // Animation sequence
     const tl = gsap.timeline({
       defaults: { 
-        ease: 'power4.out',
-        duration: 1.2
+        ease: "power3.inOut",
       }
     });
 
     tl.to(background, {
       clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 1
+      duration: 0.8
     })
     .to(imageClip, {
       clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 1
-    }, '-=0.8')
+      duration: 0.8
+    }, '-=0.6')
     .to(image, {
       scale: 1,
       opacity: 1,
-      duration: 1.2
+      y: 0,
+      duration: 1.2,
+      ease: "power2.out"
+    }, '-=0.4')
+    .to(info, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.out"
     }, '-=0.8');
   }
 
@@ -114,12 +128,14 @@ class ProjectReveal {
     document.querySelectorAll('.project-card').forEach(card => {
       const image = card.querySelector('.project-image');
       const hoverReveal = card.querySelector('.hover-reveal');
+      let isHovering = false;
       
       card.addEventListener('mouseenter', () => {
+        isHovering = true;
         gsap.to(image, {
           scale: 1.1,
-          duration: 0.8,
-          ease: 'power3.out'
+          duration: 1,
+          ease: 'power2.out'
         });
         
         gsap.to(hoverReveal, {
@@ -129,10 +145,11 @@ class ProjectReveal {
       });
 
       card.addEventListener('mouseleave', () => {
+        isHovering = false;
         gsap.to(image, {
           scale: 1,
-          duration: 0.8,
-          ease: 'power3.out'
+          duration: 1,
+          ease: 'power2.out'
         });
         
         gsap.to(hoverReveal, {
@@ -142,14 +159,16 @@ class ProjectReveal {
       });
 
       card.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        
         const bounds = card.getBoundingClientRect();
         const mouseX = e.clientX - bounds.left;
         const mouseY = e.clientY - bounds.top;
         
         gsap.to(image, {
-          duration: 0.6,
-          x: (mouseX - bounds.width / 2) * 0.05,
-          y: (mouseY - bounds.height / 2) * 0.05,
+          duration: 1,
+          x: (mouseX - bounds.width / 2) * 0.03,
+          y: (mouseY - bounds.height / 2) * 0.03,
           ease: 'power3.out'
         });
       });
