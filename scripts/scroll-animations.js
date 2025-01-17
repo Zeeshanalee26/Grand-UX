@@ -31,20 +31,8 @@ class TextAnimator {
       if (element.querySelector('.text-reveal__content')) return;
       if (element.classList.contains('text-reveal')) return;
 
-      const wrapper = document.createElement('div');
-      wrapper.className = 'text-reveal';
-      wrapper.style.height = 'auto';
-      wrapper.style.overflow = 'visible';
-
-      const content = document.createElement('div');
-      content.className = 'text-reveal__content';
-      content.style.height = 'auto';
-      content.style.overflow = 'visible';
-      content.innerHTML = element.innerHTML;
-
-      wrapper.appendChild(content);
-      element.innerHTML = '';
-      element.appendChild(wrapper);
+      const originalContent = element.innerHTML;
+      element.innerHTML = `<div class="text-reveal" style="padding-bottom: 0.1em"><div class="text-reveal__content">${originalContent}</div></div>`;
     });
   }
 
@@ -55,8 +43,6 @@ class TextAnimator {
           if (entry.isIntersecting) {
             const reveal = entry.target.querySelector('.text-reveal');
             if (reveal) {
-              reveal.style.height = 'auto';
-              reveal.style.overflow = 'visible';
               setTimeout(() => {
                 reveal.classList.add('active');
               }, 150);

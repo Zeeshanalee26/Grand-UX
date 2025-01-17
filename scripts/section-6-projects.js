@@ -20,19 +20,34 @@ class ProjectReveal {
       const image = card.querySelector('.project-image');
       const imageParent = image.parentElement;
       
+      // Create wrapper for animation
+      const wrapper = document.createElement('div');
+      wrapper.className = 'project-wrapper';
+      
       // Create container for image and background
       const container = document.createElement('div');
       container.className = 'project-image-container';
       
-      // Create background element
+      // Create background element with clip-path
       const background = document.createElement('div');
       background.className = 'project-image-background';
       background.style.backgroundColor = backgroundColors[index % backgroundColors.length];
       
+      // Wrap image in a clip container
+      const imageClip = document.createElement('div');
+      imageClip.className = 'project-image-clip';
+      
       // Restructure DOM
-      imageParent.replaceChild(container, image);
+      imageParent.replaceChild(wrapper, image);
+      wrapper.appendChild(container);
       container.appendChild(background);
-      container.appendChild(image);
+      container.appendChild(imageClip);
+      imageClip.appendChild(image);
+
+      // Add hover animation elements
+      const hoverReveal = document.createElement('div');
+      hoverReveal.className = 'hover-reveal';
+      container.appendChild(hoverReveal);
     });
   }
 
@@ -58,16 +73,86 @@ class ProjectReveal {
   }
 
   animateProject(card) {
-    const container = card.querySelector('.project-image-container');
     const background = card.querySelector('.project-image-background');
+    const imageClip = card.querySelector('.project-image-clip');
     const image = card.querySelector('.project-image');
 
-    requestAnimationFrame(() => {
-      background.classList.add('background-visible');
+    // Initial state
+    gsap.set([background, imageClip], { 
+      clipPath: 'inset(100% 0% 0% 0%)'
+    });
+    
+    gsap.set(image, {
+      scale: 1.3,
+      opacity: 0
+    });
+
+    // Animation sequence
+    const tl = gsap.timeline({
+      defaults: { 
+        ease: 'power4.out',
+        duration: 1.2
+      }
+    });
+
+    tl.to(background, {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      duration: 1
+    })
+    .to(imageClip, {
+      clipPath: 'inset(0% 0% 0% 0%)',
+      duration: 1
+    }, '-=0.8')
+    .to(image, {
+      scale: 1,
+      opacity: 1,
+      duration: 1.2
+    }, '-=0.8');
+  }
+
+  setupHoverEffects() {
+    document.querySelectorAll('.project-card').forEach(card => {
+      const image = card.querySelector('.project-image');
+      const hoverReveal = card.querySelector('.hover-reveal');
       
-      setTimeout(() => {
-        image.classList.add('image-visible');
-      }, 400);
+      card.addEventListener('mouseenter', () => {
+        gsap.to(image, {
+          scale: 1.1,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+        
+        gsap.to(hoverReveal, {
+          opacity: 1,
+          duration: 0.4
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        gsap.to(image, {
+          scale: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+        
+        gsap.to(hoverReveal, {
+          opacity: 0,
+          duration: 0.4
+        });
+      });
+
+      card.addEventListener('mousemove', (e) => {
+        const bounds = card.getBoundingClientRect();
+        const mouseX = e.clientX - bounds.left;
+        const mouseY = e.clientY - bounds.top;
+        
+        gsap.to(image, {
+          duration: 0.6,
+          x: (mouseX - bounds.width / 2) * 0.05,
+          y: (mouseY - bounds.height / 2) * 0.05,
+          ease: 'power3.out'
+        });
+      });
     });
   }
 
@@ -132,15 +217,6 @@ class ProjectReveal {
         setTimeout(() => {
           cursorCircle.style.transform = 'scale(1)';
         }, 100);
-      });
-    });
-  }
-
-  setupHoverEffects() {
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        const title = card.querySelector('.project-info h3');
-        title.style.transition = 'all 0.4s cubic-bezier(0.33, 1, 0.68, 1)';
       });
     });
   }
