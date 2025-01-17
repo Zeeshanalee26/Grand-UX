@@ -10,7 +10,7 @@
 .footer-container {
   display: flex;
   justify-content: space-between;
-  gap: 120px;
+  gap: 100px;
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
@@ -55,7 +55,7 @@
 
 .social-links {
   display: flex;
-  gap: 24px;
+  gap: 26px;
 }
 
 .social-link {
@@ -63,6 +63,7 @@
   text-decoration: none;
   position: relative;
   display: inline-block;
+  font-size: 18px;
 }
 
 .social-link::after {
@@ -94,6 +95,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  font-size: 18px;
 }
 
 .footer-nav-link {
@@ -126,7 +128,7 @@
 
 .address {
   color: rgba(23, 25, 30, 1);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   margin: 0;
 }
