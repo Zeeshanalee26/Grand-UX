@@ -1,8 +1,12 @@
 .section-4 {
-  background: #ffffff;
+  background: var(--color-background-light);
   width: 100%;
+  max-width: 1440px;
+  height: 172px;
+  margin: 0 auto;
   overflow: hidden;
-  padding: 40px 0;
+  padding: 100px 264px 40px 264px;
+  box-sizing: border-box;
 }
 
 .logo-container {
@@ -39,43 +43,8 @@
   filter: grayscale(0%);
 }
 
-/* Tablet (Portrait) */
-@media screen and (min-width: 768px) {
-  .section-4 {
-    padding: 50px 0;
-  }
-
-  .logo-container {
-    max-width: 700px;
-  }
-
-  .logo {
-    flex: 0 0 160px;
-    padding: 0 30px;
-  }
-}
-
-/* Tablet (Landscape) & Small Desktop */
-@media screen and (min-width: 1024px) {
-  .section-4 {
-    padding: 60px 0;
-  }
-
-  .logo-container {
-    max-width: 800px;
-  }
-
-  .logo {
-    flex: 0 0 180px;
-    padding: 0 40px;
-  }
-}
-
 /* Regular Desktop */
 @media screen and (min-width: 1440px) {
-  .section-4 {
-    padding: 100px 0;
-  }
 
   .logo-container {
     max-width: 912px;
@@ -89,12 +58,9 @@
 
 /* Large Desktop */
 @media screen and (min-width: 1920px) {
-  .section-4 {
-    padding: 100px 264px 30px 264px;
-  }
 
   .logo-container {
-    max-width: 1200px;
+    max-width: 912px;
   }
 
   .logo {

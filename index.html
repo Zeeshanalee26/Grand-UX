@@ -6,14 +6,20 @@
   <title>Document</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-
+  
+<!-- common styles -->
   <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/typography.css">
   <link rel="stylesheet" href="styles/animations.css">
-  <link rel="stylesheet" href="styles/hero.css">
   <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/scroll-animations.css">
+
+  <!-- homepage styles -->
+  <link rel="stylesheet" href="styles/hero.css">
   <link rel="stylesheet" href="styles/section-2.css">
   <link rel="stylesheet" href="styles/section-3-text-effect.css">
+  <link rel="stylesheet" href="styles/section-3-mobile-only.css">
   <link rel="stylesheet" href="styles/section-4-companies.css">
   <link rel="stylesheet" href="styles/section-5-services.css">
   <link rel="stylesheet" href="styles/section-6-projects.css">
@@ -22,25 +28,30 @@
   <link rel="stylesheet" href="styles/section-9-reviews.css">
   <link rel="stylesheet" href="styles/section-10-pricing.css">
   <link rel="stylesheet" href="styles/section-11-contact.css">
-  <link rel="stylesheet" href="styles/footer.css">
-  <link rel="stylesheet" href="styles/scroll-animations.css">
-  <link rel="stylesheet" href="styles/section-3-mobile-only.css">
+  
 </head>
 <body>
 
   <header class="header">
     <div class="container">
       <a href="/" class="logo">
-        <p class="logo-text">G</p>
+        <span class="logo-desktop">G</span>
+        <img src="images/mobile-logo.png" alt="Grand" class="logo-mobile">
       </a>
       <nav class="nav">
         <ul class="nav-list">
-          <li><a href="#" class="nav-link">Services</a></li>
-          <li><a href="#" class="nav-link">Projects</a></li>
-          <li><a href="#" class="nav-link">About</a></li>
-          <li><a href="#" class="cta-button nav-link--button"><span>Let's Talk</span></a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#work" class="nav-link">Work</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#contact" class="header-button cta-button">Let's Talk</a></li>
         </ul>
       </nav>
+      <button class="menu-button">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Menu
+      </button>
     </div>
   </header>
 
@@ -188,7 +199,7 @@
   <div class="container">
     <div class="section-6-header">
       <h3 class="label">Projects</h3>
-      <h2 class="title">Recent projects that our team loved working on!</h2>
+      <h2 class="title">Recent projects that our<br> team loved working on!</h2>
     </div>
     
     <div class="projects-grid">
@@ -307,7 +318,7 @@
         </ul>
       </div>
     </div>
-    <a href="#" class="collaborate-button cta-button mobile-button">Let's Talk</a>
+    <a href="#" class="desktop-button collaborate-button cta-button mobile-button">Let's Talk</a>
   </div>
 </section>
 
@@ -475,6 +486,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="scripts/header-overlay.js"></script>
   <script src="scripts/animations.js"></script>
   <script src="scripts/reveal.js"></script>
   <script src="scripts/header.js"></script>

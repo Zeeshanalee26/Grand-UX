@@ -2,7 +2,7 @@
   width: 100vw;
   height: auto;
   padding: 180px 0;
-  background-color: #fff;
+  background-color: var(--color-background-light);
   display: flex;
   justify-content: center;
 }
@@ -19,10 +19,10 @@
 }
 
 .results-title {
-  font-size: 70px;
+  font-size: 4.375em; /* 70px */
   line-height: 78px;
-  font-weight: 460;
-  color: black;
+  font-weight: var(--weight-medium);
+  color: var(--color-background-dark);
   max-width: 990px;
 }
 
@@ -42,19 +42,19 @@
 }
 
 .stat-number {
-  font-size: 80px;
+  font-size: 5em; /* 80px */
   line-height: 86px;
-  font-weight: 460;
-  color: #000;
+  font-weight: var(--weight-medium);
+  color: var(--color-background-dark);
   display: flex;
   align-items: baseline;
 }
 
 .stat-description {
-  font-size: 22px;
+  font-size: 1.375em; /* 22px */
   line-height: 28px;
-  font-weight: 460;
-  color: rgba(41, 41, 41, 1);
+  font-weight: var(--weight-medium);
+  color: var(--color-secondary-dark);
   max-width: 350px;
 }
 
@@ -71,7 +71,7 @@
   transform: translateY(0);
 }
 
-/* Mobile (320px to 767px) */
+/* Media queries */
 @media screen and (max-width: 767px) {
   .section-8 {
     padding: 80px 0;
@@ -83,7 +83,7 @@
   }
 
   .results-title {
-    font-size: 36px;
+    font-size: 2.25em; /* 36px */
     line-height: 42px;
     max-width: 100%;
   }
@@ -98,12 +98,12 @@
   }
 
   .stat-number {
-    font-size: 48px;
+    font-size: 3em; /* 48px */
     line-height: 54px;
   }
 
   .stat-description {
-    font-size: 16px;
+    font-size: 1em; /* 16px */
     line-height: 24px;
     max-width: 100%;
   }
@@ -121,7 +121,7 @@
   }
 
   .results-title {
-    font-size: 48px;
+    font-size: 3em; /* 48px */
     line-height: 56px;
     max-width: 700px;
   }
@@ -132,107 +132,41 @@
   }
 
   .stat-number {
-    font-size: 56px;
+    font-size: 3.5em; /* 56px */
     line-height: 64px;
   }
 
   .stat-description {
-    font-size: 18px;
+    font-size: 1.125em; /* 18px */
     line-height: 26px;
     max-width: 500px;
   }
 }
 
-/* Laptop (1024px to 1439px) */
-@media screen and (min-width: 1024px) and (max-width: 1439px) {
-  .results-container {
-    max-width: 1024px;
-    padding: 0 60px;
-    gap: 80px;
+/* Large Desktop (1920px) */
+@media screen and (min-width: 1920px) {
+  .section-8 {
+    width: 1920px;
+    padding: 180px 240px;
   }
 
-  .results-title {
-    font-size: 56px;
-    line-height: 64px;
-    max-width: 800px;
-  }
-
-  .stat-number {
-    font-size: 64px;
-    line-height: 72px;
-  }
-
-  .stat-description {
-    font-size: 18px;
-    line-height: 24px;
-    max-width: 280px;
-  }
-}
-
-/* Desktop (1440px) - Base size */
-@media screen and (min-width: 1440px) {
   .results-container {
     max-width: 1440px;
     padding: 0 117px;
   }
-}
-
-/* Large Desktop (1920px and up) */
-@media screen and (min-width: 1920px) {
-  .section-8 {
-    padding: calc(180px * (100vw/1440)) 0;
-  }
-
-  .results-container {
-    max-width: calc(1440px * (100vw/1440));
-    padding: 0 calc(117px * (100vw/1440));
-    gap: calc(110px * (100vw/1440));
-  }
 
   .results-title {
-    font-size: calc(70px * (100vw/1440));
-    line-height: calc(78px * (100vw/1440));
-    max-width: calc(990px * (100vw/1440));
+    font-size: 5em; /* 80px */
+    line-height:86px;
   }
 
   .stat-number {
-    font-size: calc(80px * (100vw/1440));
-    line-height: calc(86px * (100vw/1440));
+    font-size: 5.65em; /* 90px */
+    line-height: 86px;
   }
 
   .stat-description {
-    font-size: calc(22px * (100vw/1440));
-    line-height: calc(28px * (100vw/1440));
-    max-width: calc(350px * (100vw/1440));
-  }
-}
-
-/* Extra Large Desktop (2560px and up) */
-@media screen and (min-width: 2560px) {
-  .section-8 {
-    padding: calc(180px * (100vw/1440)) 0;
-  }
-
-  .results-container {
-    max-width: calc(1440px * (100vw/1440));
-    padding: 0 calc(117px * (100vw/1440));
-    gap: calc(110px * (100vw/1440));
-  }
-
-  .results-title {
-    font-size: calc(70px * (100vw/1440));
-    line-height: calc(78px * (100vw/1440));
-    max-width: calc(990px * (100vw/1440));
-  }
-
-  .stat-number {
-    font-size: calc(80px * (100vw/1440));
-    line-height: calc(86px * (100vw/1440));
-  }
-
-  .stat-description {
-    font-size: calc(22px * (100vw/1440));
-    line-height: calc(28px * (100vw/1440));
-    max-width: calc(350px * (100vw/1440));
+    font-size: 1.5em; /* 24px */
+    line-height: 28px;
   }
 }

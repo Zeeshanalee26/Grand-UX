@@ -1,0 +1,21 @@
+:root {
+  --color-primary: #FFFFFF;
+  --color-secondary-dark: rgba(23, 25, 30, 1);
+  --color-secondary: rgba(131, 141, 151, 1);
+  --color-background-dark: #000000;
+  --color-background-light: #FFFFFF;  
+  --color-background-gray: #F5F5F5;
+  --color-accent: #FF6600;
+
+  --weight-regular: 400;
+  --weight-medium: 460;
+  --weight-semibold: 620;
+  --weight-bold: 700;
+}
+
+body {
+  font-family: 'Figtree', sans-serif;
+  font-size: 16px; /* Base font size */
+  font-weight: var(--weight-regular);
+  color: var(--color-primary);
+}

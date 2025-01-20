@@ -2,8 +2,8 @@
   width: 100vw;
   height: auto;
   min-height: 750px;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--color-background-dark);
+  color: var(--color-primary);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,21 +28,21 @@
 }
 
 .pricing-title {
-  font-size: 70px;
+  font-size: 4.375em; /* 70px */
   line-height: 78px;
-  font-weight: 460;
+  font-weight: var(--weight-medium);
   letter-spacing: -0.02em;
 }
 
 .gray-text {
-  color: rgba(131, 141, 151, 1);
+  color: var(--color-secondary);
 }
 
 .pricing-subtitle {
-  font-size: 24px;
+  font-size: 1.5em; /* 24px */
   line-height: 32px;
-  font-weight: 460;
-  color: rgba(131, 141, 151, 1);
+  font-weight: var(--weight-medium);
+  color: var(--color-secondary);
   margin-bottom: 40px;
 }
 
@@ -50,13 +50,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--color-primary);
+  color: var(--color-background-dark);
   padding: 8px 32px;
   border-radius: 100px;
   text-decoration: none;
-  font-weight: 620;
-  font-size: 22px;
+  font-weight: var(--weight-semibold);
+  font-size: 1.375em; /* 22px */
   height: 74px;
   min-width: 260px;
   transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
@@ -81,7 +81,7 @@
   justify-content: center;
   gap: 8px;
   padding: 32px 40px;
-  border: 3px solid rgb(255, 255, 255);
+  border: 3px solid var(--color-primary);
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
@@ -89,28 +89,28 @@
 }
 
 .model-card:hover {
-  background-color: #fff;
-  border-color: #fff;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .model-title {
-  font-size: 64px;
+  font-size: 4em; /* 64px */
   line-height: 74px;
-  font-weight: 460;
+  font-weight: var(--weight-medium);
   transition: color 0.5s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .model-description {
-  font-size: 20px;
+  font-size: 1.25em; /* 20px */
   line-height: 28px;
-  font-weight: 460;
-  color: rgba(131, 141, 151, 1);
+  font-weight: var(--weight-medium);
+  color: var(--color-secondary);
   transition: color 0.5s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 .model-card:hover .model-title,
 .model-card:hover .model-description {
-  color: #000;
+  color: var(--color-background-dark);
 }
 
 /* Mobile (320px to 767px) */
@@ -135,16 +135,14 @@
   }
 
   .pricing-title {
-    font-size: 36px;
+    font-size: 2.25em; /* 36px */
     line-height: 42px;
-    text-align: center;
   }
 
   .pricing-subtitle {
-    font-size: 18px;
+    font-size: 1.125em; /* 18px */
     line-height: 24px;
     margin-bottom: 0;
-    text-align: center;
   }
 
   .pricing-button {
@@ -164,12 +162,12 @@
   }
 
   .model-title {
-    font-size: 36px;
+    font-size: 2.25em; /* 36px */
     line-height: 42px;
   }
 
   .model-description {
-    font-size: 16px;
+    font-size: 1em; /* 16px */
     line-height: 22px;
   }
 }
@@ -197,14 +195,14 @@
   }
 
   .pricing-title {
-    font-size: 48px;
+    font-size: 3em; /* 48px */
     line-height: 56px;
     text-align: center;
     max-width: 500px;
   }
 
   .pricing-subtitle {
-    font-size: 20px;
+    font-size: 1.25em; /* 20px */
     line-height: 28px;
     margin-bottom: 0;
     text-align: center;
@@ -238,7 +236,7 @@
   }
 
   .pricing-title {
-    font-size: 56px;
+    font-size: 3.5em; /* 56px */
     line-height: 64px;
   }
 
@@ -250,28 +248,29 @@
 /* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
   .pricing-container {
-    max-width: calc(1440px * (100vw/1440));
-    padding: 0 calc(117px * (100vw/1440));
-    gap: calc(92px * (100vw/1440));
+    height: 850px;
+    max-width:1920px;
+    padding: 190px 388px;
+    gap: 92px;
   }
 
   .pricing-title {
-    font-size: calc(70px * (100vw/1440));
-    line-height: calc(78px * (100vw/1440));
+    font-size: 4.4em; /* 70px */
+    line-height: 78px;
   }
-
+  
   .pricing-subtitle {
-    font-size: calc(24px * (100vw/1440));
-    line-height: calc(32px * (100vw/1440));
+    font-size: 1.75em; /* 28px */
+    line-height: 40px;
   }
 
   .model-title {
-    font-size: calc(64px * (100vw/1440));
-    line-height: calc(74px * (100vw/1440));
+    font-size: 4em; /* 64px */
+    line-height: 74px;
   }
 
   .model-description {
-    font-size: calc(20px * (100vw/1440));
-    line-height: calc(28px * (100vw/1440));
+    font-size: 1.5em; /* 24px */
+    line-height: 48px;
   }
 }

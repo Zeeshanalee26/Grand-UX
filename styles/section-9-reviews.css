@@ -2,8 +2,7 @@
   width: 100vw;
   height: auto;
   padding-top: 50px;
-  margin-bottom: -40px;
-  background-color: #fff;
+  background-color: var(--color-background-light);
   display: flex;
   justify-content: center;
 }
@@ -20,10 +19,10 @@
 }
 
 .reviews-title {
-  font-size: 72px;
+  font-size: 4.5em; /* 72px */
   line-height: 80px;
-  font-weight: 460;
-  color: black;
+  font-weight: var(--weight-medium);
+  color: var(--color-background-dark);
   max-width: 990px;
 }
 
@@ -69,19 +68,19 @@
 }
 
 .review-text {
-  font-size: 44px;
+  font-size: 2.75em; /* 44px */
   line-height: 52px;
-  font-weight: 460;
-  color: #000;
+  font-weight: var(--weight-medium);
+  color: var(--color-background-dark);
   max-width: 950px;
   margin: 0 0 54px 0;
 }
 
 .author-name {
-  font-size: 20px;
+  font-size: 1.25em; /* 20px */
   line-height: 28.8px;
-  font-weight: 460;
-  color: rgba(29, 29, 29, 1);
+  font-weight: var(--weight-medium);
+  color: var(--color-secondary-dark);
 }
 
 .review-author {
@@ -130,7 +129,7 @@
   }
 
   .reviews-title {
-    font-size: 36px;
+    font-size: 2.25em; /* 36px */
     line-height: 42px;
   }
 
@@ -150,13 +149,13 @@
   }
 
   .review-text {
-    font-size: 24px;
+    font-size: 1.5em; /* 24px */
     line-height: 32px;
     margin: 0 0 32px 0;
   }
 
   .author-name {
-    font-size: 16px;
+    font-size: 1em; /* 16px */
     line-height: 24px;
   }
 
@@ -186,35 +185,39 @@
   }
 
   .reviews-title {
-    font-size: 64px;
+    font-size: 4em; /* 64px */
     line-height: 72px;
   }
 
   .review-text {
-    font-size: 38px;
+    font-size: 2.375em; /* 38px */
     line-height: 46px;
   }
 }
 
 /* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
+  .section-9 {
+    padding: 180px 240px -40px 240px;
+  }
+
   .reviews-title {
-    font-size: calc(72px * (100vw/1440));
-    line-height: calc(80px * (100vw/1440));
+    font-size: 5em; /* 80px */
+    line-height: 86px;
   }
 
   .review-text {
-    font-size: calc(44px * (100vw/1440));
-    line-height: calc(52px * (100vw/1440));
+    font-size: 3em; /* 48px */
+    line-height: 56px;
   }
 
   .author-name {
-    font-size: calc(20px * (100vw/1440));
-    line-height: calc(28.8px * (100vw/1440));
+    font-size: 1.5em; /* 24px */
+    line-height: 32px;
   }
 }
 
-/* Custom cursor styles */
+/* cursor styles */
 .cursor-dot {
   width: 100px;
   height: 100px;
@@ -262,7 +265,6 @@
   }
 }
 
-/* Add these styles */
 .swipe-indicator {
   display: none;
   position: absolute;

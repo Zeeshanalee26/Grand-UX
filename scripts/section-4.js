@@ -1,27 +1,19 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('logoTrack');
-    const container = track.parentElement;
-    const logos = [...track.getElementsByClassName('logo')];
-    
-    const logoWidth = logos[0].offsetWidth;
-    
-    const numberOfLogosNeeded = Math.ceil(container.offsetWidth / logoWidth) + logos.length;
-    
-    for(let i = 0; i < numberOfLogosNeeded; i++) {
-        logos.forEach(logo => {
-            const clone = logo.cloneNode(true);
-            track.appendChild(clone);
-        });
-    }
+    if (!track) return;
 
-    let scrollInterval;
+    // Clone logos multiple times to ensure smooth infinite scroll
+    const originalLogos = track.innerHTML;
+    track.innerHTML = originalLogos + originalLogos + originalLogos + originalLogos;
+
     let position = 0;
     const speed = 1;
 
     function moveLogos() {
         position -= speed;
         
-        if (Math.abs(position) >= logoWidth * logos.length) {
+        // Reset position seamlessly when reaching half of the content
+        if (Math.abs(position) >= track.offsetWidth / 2) {
             position = 0;
         }
         
@@ -29,8 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(moveLogos);
     }
 
+    // Start the animation
     requestAnimationFrame(moveLogos);
 
+    // Pause on hover
     track.addEventListener('mouseenter', () => {
         track.style.animationPlayState = 'paused';
     });
@@ -39,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         track.style.animationPlayState = 'running';
     });
 
+    // Handle window resize
     window.addEventListener('resize', () => {
         position = 0;
         track.style.transform = `translateX(${position}px)`;

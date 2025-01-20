@@ -1,69 +1,48 @@
-class CapabilitySection {
-  constructor() {
-    this.activeGroup = null;
-    this.init();
-  }
-
-  init() {
-    const groups = document.querySelectorAll('.capability-group');
-    const isMobile = window.innerWidth <= 1023;
-
-    const researchGroup = document.querySelector('.capability-group[data-group="research"]');
-    if (researchGroup) {
-      this.toggleCapabilityGroup(researchGroup, true);
-      this.activeGroup = researchGroup;
-    }
-
-    groups.forEach(group => {
-      const header = group.querySelector('.capability-header');
-      header.addEventListener('click', () => {
-        if (group === this.activeGroup) {
-          this.toggleCapabilityGroup(group, false);
-          this.activeGroup = null;
-          return;
+document.addEventListener('DOMContentLoaded', function() {
+  const capabilityGroups = document.querySelectorAll('.capability-group');
+  
+  capabilityGroups.forEach(group => {
+    const header = group.querySelector('.capability-header');
+    const list = group.querySelector('.capability-list');
+    
+    header.addEventListener('click', () => {
+      const isActive = group.classList.contains('active');
+      
+      capabilityGroups.forEach(otherGroup => {
+        if (otherGroup !== group && otherGroup.classList.contains('active')) {
+          otherGroup.classList.remove('active');
+          const otherList = otherGroup.querySelector('.capability-list');
+          otherList.style.maxHeight = '0';
+          otherList.style.visibility = 'hidden';
+          otherList.style.opacity = '0';
         }
-
-        if (this.activeGroup) {
-          this.toggleCapabilityGroup(this.activeGroup, false);
-        }
-
-        this.toggleCapabilityGroup(group, true);
-        this.activeGroup = group;
       });
+      
+      if (!isActive) {
+        group.classList.add('active');
+        requestAnimationFrame(() => {
+          list.style.visibility = 'visible';
+          list.style.opacity = '1';
+          list.style.maxHeight = '2000px';
+        });
+      } else {
+        group.classList.remove('active');
+        list.style.maxHeight = '0';
+        list.style.visibility = 'hidden';
+        list.style.opacity = '0';
+      }
+    });
+  });
+  
+  if (capabilityGroups.length > 0) {
+    const firstGroup = capabilityGroups[0];
+    const firstList = firstGroup.querySelector('.capability-list');
+    
+    firstGroup.classList.add('active');
+    requestAnimationFrame(() => {
+      firstList.style.visibility = 'visible';
+      firstList.style.opacity = '1';
+      firstList.style.maxHeight = '2000px';
     });
   }
-
-  toggleCapabilityGroup(group, shouldOpen) {
-    const list = group.querySelector('.capability-list');
-    const items = group.querySelectorAll('.capability-item');
-    const isMobile = window.innerWidth <= 1023;
-
-    if (shouldOpen) {
-      group.classList.add('active');
-      if (isMobile) {
-        list.style.maxHeight = `${list.scrollHeight}px`;
-        list.style.opacity = '1';
-        items.forEach((item, index) => {
-          setTimeout(() => {
-            item.style.transform = 'translateY(0)';
-            item.style.opacity = '1';
-          }, index * 50);
-        });
-      }
-    } else {
-      group.classList.remove('active');
-      if (isMobile) {
-        list.style.maxHeight = '0px';
-        list.style.opacity = '0';
-        items.forEach(item => {
-          item.style.transform = 'translateY(20px)';
-          item.style.opacity = '0';
-        });
-      }
-    }
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  new CapabilitySection();
 });
