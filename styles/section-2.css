@@ -28,53 +28,36 @@
   transform: scale(1);
 }
 
-/* Small phones (375px and up) */
-@media screen and (min-width: 375px) {
-  .section-2-image {
-    aspect-ratio: 375/520;
-  }
-}
-
-/* Medium phones (390px and up) */
-@media screen and (min-width: 390px) {
+/* Mobile (320px and up) */
+@media screen and (min-width: 320px) {
   .section-2 {
-    width: 390px;
     height: 50vh;
+    min-height: 480px;
   }
   
   .section-2-image {
-    width: 100%;
+    width: 100vw;
     height: 100%;
+    object-fit: cover;
   }
 }
 
 /* Tablet (768px and up) */
 @media screen and (min-width: 768px) {
   .section-2 {
-    width: 100%;
-    height: 50vh;
-  }
-  
-  .section-2-image {
-    width: 100%;
-    height: 100%;
+    height: 60vh;
+    min-height: 520px;
   }
 }
 
-/* Tablet (Landscape) & Small Desktop */
+/* Small Desktop (1024px and up) */
 @media screen and (min-width: 1024px) {
   .section-2 {
     height: 100vh;
   }
-
-  .section-2-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
-/* Regular Desktop */
+/* Regular Desktop (1440px) */
 @media screen and (min-width: 1440px) {
   .section-2 {
     height: 100vh;
@@ -91,12 +74,12 @@
 /* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
   .section-2 {
-    width: 1920px;
-    height: 1080px;
+    width: 100vw;
+    height: 100vh;
   }
 
   .section-2-image {
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height: 100%;
   }
 }

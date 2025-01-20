@@ -3,81 +3,108 @@ document.addEventListener('DOMContentLoaded', () => {
   const servicesSection = document.querySelector('.section-3-mobile-only');
   
   const options = {
-    root: null,
-    rootMargin: '-47% 0px -47% 0px', // More precise center targeting
-    threshold: Array.from({ length: 150 }, (_, i) => i / 149) // More granular thresholds
+    root: servicesSection,
+    rootMargin: '-40% 0px -40% 0px',
+    threshold: Array.from({ length: 100 }, (_, i) => i / 99)
   };
 
-  let activeItem = null;
+  let activeIndex = 0;
+  let lastScrollY = servicesSection.scrollTop;
 
-  const setItemState = (item, progress) => {
+  const setItemState = (item, index, progress) => {
     const span = item.querySelector('span');
     
-    if (progress > 0) {
-      // Enhanced smooth transitions with easing
-      const easeProgress = progress < 0.5 
-        ? 4 * progress * progress * progress 
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2; // Custom easing curve
+    if (index === activeIndex) {
+      // Active item animation
+      const scale = 1 + (progress * 0.05);
+      const fontSize = 30 + (progress * 4);
+      const weight = 400 + (progress * 200);
+      const colorValue = Math.round(70 + (progress * 185));
       
-      const scale = 1 + (Math.min(easeProgress, 1) * 0.05);
-      const fontSize = 30 + (Math.min(easeProgress, 1) * 4);
-      const weight = 400 + (Math.min(easeProgress, 1) * 200);
-      
-      // Smoother color transition
-      const colorValue = Math.round(70 + (easeProgress * 185));
-      const color = progress > 0.5 
-        ? `rgb(255, 255, 255)` 
-        : `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
-      
-      // Apply enhanced transitions
-      span.style.transform = `scale(${scale.toFixed(3)})`;
-      span.style.fontSize = `${fontSize.toFixed(1)}px`;
+      span.style.transform = `scale(${scale.toFixed(4)})`;
+      span.style.fontSize = `${fontSize.toFixed(2)}px`;
+      span.style.lineHeight = `${36 + (progress * 4)}px`;
       span.style.fontWeight = String(Math.round(weight));
-      span.style.color = color;
-
-      if (progress > 0.5) {
-        if (activeItem && activeItem !== item) {
-          setItemState(activeItem, 0);
-        }
+      span.style.color = progress > 0.5 ? 'white' : `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+      
+      if (progress > 0.7) {
         item.classList.add('active');
-        activeItem = item;
       } else {
         item.classList.remove('active');
       }
+    } else if (index < activeIndex) {
+      // Items before active stay highlighted
+      span.style.transform = 'scale(1.05)';
+      span.style.fontSize = '34px';
+      span.style.lineHeight = '40px';
+      span.style.fontWeight = '600';
+      span.style.color = 'white';
+      item.classList.add('active');
     } else {
-      // Smooth reset state
-      item.classList.remove('active');
+      // Items after active stay dim
       span.style.transform = 'scale(1)';
       span.style.fontSize = '30px';
+      span.style.lineHeight = '36px';
       span.style.fontWeight = '400';
       span.style.color = 'rgb(70, 70, 70)';
+      item.classList.remove('active');
     }
   };
 
   const observer = new IntersectionObserver((entries) => {
-    // Sort entries by visibility to handle overlapping transitions better
-    const sortedEntries = entries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-    
-    sortedEntries.forEach(entry => {
-      const item = entry.target;
-      const progress = entry.intersectionRatio;
-      
-      requestAnimationFrame(() => {
-        setItemState(item, progress);
-      });
+    const currentScrollY = servicesSection.scrollTop;
+    const isScrollingDown = currentScrollY > lastScrollY;
+    lastScrollY = currentScrollY;
+
+    // Find the most visible item
+    const mostVisible = entries.reduce((prev, current) => {
+      return (prev?.intersectionRatio > current.intersectionRatio) ? prev : current;
     });
+
+    if (mostVisible && mostVisible.intersectionRatio > 0.5) {
+      // Get the index of the most visible item
+      const currentIndex = Array.from(serviceItems).indexOf(mostVisible.target);
+      
+      if (isScrollingDown) {
+        activeIndex = Math.max(currentIndex, activeIndex);
+      } else {
+        activeIndex = Math.min(currentIndex, activeIndex);
+      }
+
+      // Update all items based on their position relative to active index
+      serviceItems.forEach((item, index) => {
+        requestAnimationFrame(() => {
+          const entry = entries.find(e => e.target === item);
+          const progress = entry ? entry.intersectionRatio : 0;
+          setItemState(item, index, progress);
+        });
+      });
+    }
   }, options);
 
-  // Initialize first item as active with smooth transition
-  if (serviceItems.length > 0) {
-    const firstItem = serviceItems[0];
-    requestAnimationFrame(() => {
-      setItemState(firstItem, 1);
-    });
-  }
-
+  // Initialize first item
+  setItemState(serviceItems[0], 0, 1);
+  
   // Observe all items
   serviceItems.forEach(item => {
     observer.observe(item);
   });
+
+  // Handle touch events for smoother mobile scrolling
+  let touchStartY = 0;
+  
+  servicesSection.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  servicesSection.addEventListener('touchmove', (e) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchStartY - touchY;
+    touchStartY = touchY;
+
+    requestAnimationFrame(() => {
+      const currentScroll = servicesSection.scrollTop;
+      servicesSection.scrollTop = currentScroll + deltaY;
+    });
+  }, { passive: true });
 }); 
