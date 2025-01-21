@@ -1,17 +1,12 @@
 .section-4 {
   background: var(--color-background-light);
   width: 100%;
-  max-width: 1440px;
-  height: 172px;
-  margin: 0 auto;
   overflow: hidden;
-  padding: 100px 264px 40px 264px;
   box-sizing: border-box;
 }
 
 .logo-container {
   width: 100%;
-  max-width: 912px;
   height: 42px;
   margin: 0 auto;
   overflow: hidden;
@@ -21,6 +16,9 @@
 .logo-track {
   display: flex;
   position: relative;
+  gap: 0;
+  will-change: transform;
+  transition: transform 0.1s linear;
 }
 
 .logo {
@@ -43,8 +41,90 @@
   filter: grayscale(0%);
 }
 
-/* Regular Desktop */
+/* Extra Small Mobile (320px - 374px) */
+@media screen and (max-width: 374px) {
+  .section-4 {
+    padding: 48px 16px 32px;
+  }
+
+  .logo-container {
+    max-width: 288px;
+    height: 32px;
+  }
+
+  .logo {
+    flex: 0 0 96px;
+    padding: 0 16px;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+}
+
+/* Small Mobile (375px - 424px) */
+@media screen and (min-width: 375px) and (max-width: 424px) {
+  .section-4 {
+    padding: 56px 20px 32px;
+  }
+
+  .logo-container {
+    max-width: 335px;
+    height: 36px;
+  }
+
+  .logo {
+    flex: 0 0 111.67px;
+    padding: 0 20px;
+  }
+
+  .logo img {
+    height: 34px;
+  }
+}
+
+/* Medium Mobile (425px - 767px) */
+@media screen and (min-width: 425px) and (max-width: 767px) {
+  .section-4 {
+    padding: 48px 20px 32px;
+  }
+
+  .logo-container {
+    width: calc(100% - 40px);
+    max-width: 350px;
+    height: 32px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    flex: 0 0 116.67px; /* Exactly one-third of container width */
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+}
+
+/* Tablet and up - Show more logos */
+@media screen and (min-width: 768px) {
+  .logo-container {
+    max-width: 672px;
+  }
+
+  .logo {
+    flex: 0 0 168px;
+    padding: 0 32px;
+  }
+}
+
+/* Regular Desktop (1440px - 1919px) */
 @media screen and (min-width: 1440px) {
+  .section-4 {
+    max-width: 1440px;
+    padding: 100px 264px 40px;
+  }
 
   .logo-container {
     max-width: 912px;
@@ -56,16 +136,20 @@
   }
 }
 
-/* Large Desktop */
+/* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
-
-  .logo-container {
-    max-width: 912px;
+  .section-4 {
+    max-width: 1920px;
+    padding: 120px 504px 60px;
   }
 
   .logo {
     flex: 0 0 240px;
     padding: 0 60px;
+  }
+
+  .logo img {
+    height: 42px;
   }
 }
 

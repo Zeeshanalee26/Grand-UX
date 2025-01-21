@@ -2,40 +2,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('logoTrack');
     if (!track) return;
 
-    // Clone logos multiple times to ensure smooth infinite scroll
-    const originalLogos = track.innerHTML;
-    track.innerHTML = originalLogos + originalLogos + originalLogos + originalLogos;
+    // Get the original logos
+    const logos = Array.from(track.children);
+    const logoWidth = logos[0].offsetWidth;
+    const totalLogos = logos.length;
+
+    // Clone enough logos to ensure smooth infinite scroll
+    for (let i = 0; i < totalLogos * 3; i++) {
+        const clone = logos[i % totalLogos].cloneNode(true);
+        track.appendChild(clone);
+    }
 
     let position = 0;
-    const speed = 1;
+    let speed = 1;
+    let isPaused = false;
+    let animationId = null;
 
     function moveLogos() {
-        position -= speed;
-        
-        // Reset position seamlessly when reaching half of the content
-        if (Math.abs(position) >= track.offsetWidth / 2) {
-            position = 0;
+        if (!isPaused) {
+            position -= speed;
+            
+            // Reset position when reaching one set of logos
+            // This creates the infinite loop effect
+            if (Math.abs(position) >= logoWidth * totalLogos) {
+                position = 0;
+            }
+            
+            track.style.transform = `translateX(${position}px)`;
         }
-        
-        track.style.transform = `translateX(${position}px)`;
-        requestAnimationFrame(moveLogos);
+        animationId = requestAnimationFrame(moveLogos);
     }
 
     // Start the animation
-    requestAnimationFrame(moveLogos);
+    moveLogos();
 
     // Pause on hover
     track.addEventListener('mouseenter', () => {
-        track.style.animationPlayState = 'paused';
+        isPaused = true;
     });
     
     track.addEventListener('mouseleave', () => {
-        track.style.animationPlayState = 'running';
+        isPaused = false;
     });
 
     // Handle window resize
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-        position = 0;
-        track.style.transform = `translateX(${position}px)`;
+        clearTimeout(resizeTimeout);
+        cancelAnimationFrame(animationId);
+        
+        resizeTimeout = setTimeout(() => {
+            // Reset position and recalculate logo width
+            position = 0;
+            track.style.transform = `translateX(${position}px)`;
+            moveLogos();
+        }, 150);
     });
 });

@@ -20,7 +20,7 @@
 }
 
 .cta-title {
-  font-size: 5em; /* 80px */
+  font-size: 5em;
   line-height: 94px;
   font-weight: var(--weight-medium);
   text-align: center;
@@ -39,7 +39,7 @@
   border-radius: 100px;
   text-decoration: none;
   font-weight: var(--weight-semibold);
-  font-size: 1.375em; /* 22px */
+  font-size: 1.375em;
   height: 74px;
   min-width: 260px;
   transition: all 0.5s cubic-bezier(0.33, 1, 0.68, 1);
@@ -49,25 +49,25 @@
 /* Media queries */
 @media screen and (max-width: 767px) {
   .section-11 {
-    padding: 60px 0;
+    padding: 80px 20px;
     min-height: auto;
   }
 
   .cta-container {
-    padding: 0 24px;
+    padding: 0 20px;
     gap: 40px;
   }
 
   .cta-title {
-    font-size: 2.25em; /* 36px */
-    line-height: 42px;
+    font-size: 2.25em;
+    line-height: 40px;
     max-width: 100%;
   }
 
   .lets-talk-button {
     height: 60px;
     min-width: 200px;
-    font-size: 1.125em; /* 18px */
+    font-size: 1.125em;
   }
 }
 
@@ -83,15 +83,15 @@
   }
 
   .cta-title {
-    font-size: 3em; /* 48px */
-    line-height: 56px;
+    font-size: 2.25em;
+    line-height: 40px;
     max-width: 700px;
   }
 
   .lets-talk-button {
     height: 68px;
     min-width: 240px;
-    font-size: 1.25em; /* 20px */
+    font-size: 1.25em;
   }
 }
 

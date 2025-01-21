@@ -54,37 +54,31 @@
 /* Mobile styles */
 @media screen and (max-width: 767px) {
     .section-3 {
-        min-height: 100vh;
+        width: 100%;
+        min-height: 500px;
         height: auto;
         padding: 64px 20px;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
+        align-items: center;
         gap: 40px;
     }
 
     .section-3-text {
-        font-size: 40px;
-        line-height: 44px;
-        margin: 0;
+        font-size: clamp(32px, 5vw, 36px);
+        line-height: 1.111;
+        width: 100%;
         max-width: 350px;
         font-weight: var(--weight-medium);
-    }
-
-    .gray-text {
-        color: rgba(255, 255, 255, 0.4);
-    }
-
-    .white-text {
-        color: var(--color-primary);
-        display: inline;
+        margin: 0;
     }
 
     .section-3-cta {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: var(--color-accent);
+        background-color: var(--color-primary);
         color: var(--color-background-dark);
         font-size: 16px;
         font-weight: var(--weight-medium);
@@ -95,6 +89,7 @@
         width: 100%;
         max-width: 350px;
         height: 52px;
+        margin: 0;
     }
 
     .white-text::after {
@@ -102,7 +97,17 @@
     }
 }
 
-/* Desktop (1440px) */
+@media screen and (max-width: 374px) {
+    .section-3 {
+        padding: 48px 16px;
+    }
+
+    .section-3-text {
+        font-size: 32px;
+        line-height: 36px;
+    }
+}
+
 @media screen and (min-width: 1440px) {
     .section-3 {
         padding: 235px 220px;
@@ -119,7 +124,6 @@
     }
 }
 
-/* Large Desktop (1920px and up) */
 @media screen and (min-width: 1920px) {
     .section-3-text {
         font-size: 5.6em;

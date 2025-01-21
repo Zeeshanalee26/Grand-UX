@@ -203,66 +203,86 @@ document.addEventListener('DOMContentLoaded', function() {
             const serviceItems = document.querySelectorAll('.service-item');
             let activeItem = null;
 
-            // Clear any existing mobile setup
-            serviceItems.forEach(item => {
-                const existingImage = item.querySelector('.service-image');
-                if (existingImage) {
-                    existingImage.remove();
+            function setupServiceItem(item) {
+                if (!item.querySelector('.service-image')) {
+                    const imageUrl = item.getAttribute('data-image');
+                    const imageContainer = document.createElement('div');
+                    imageContainer.className = 'service-image';
+                    imageContainer.innerHTML = `
+                        <img 
+                            src="${imageUrl}" 
+                            alt="Service"
+                            loading="lazy"
+                            style="opacity: 0; transition: opacity 0.3s ease;"
+                            onload="this.style.opacity='1'"
+                        >`;
+                    
+                    // Insert image before the content
+                    const content = item.querySelector('.service-content');
+                    if (content) {
+                        item.insertBefore(imageContainer, content);
+                    } else {
+                        item.insertBefore(imageContainer, item.firstChild);
+                    }
                 }
-            });
+            }
 
-            // Setup mobile layout
-            serviceItems.forEach(item => {
-                // Create and insert image container
-                const image = item.getAttribute('data-image');
-                const imageContainer = document.createElement('div');
-                imageContainer.className = 'service-image';
-                imageContainer.innerHTML = `<img src="${image}" alt="Service Image">`;
-                
-                const content = item.querySelector('.service-content');
-                item.insertBefore(imageContainer, content);
+            function toggleItem(item) {
+                if (activeItem === item) {
+                    // Close if clicking the active item
+                    item.classList.remove('active');
+                    const image = item.querySelector('.service-image');
+                    if (image) {
+                        image.style.height = '0';
+                        image.style.marginBottom = '0';
+                    }
+                    activeItem = null;
+                } else {
+                    // Close previous item
+                    if (activeItem) {
+                        activeItem.classList.remove('active');
+                        const prevImage = activeItem.querySelector('.service-image');
+                        if (prevImage) {
+                            prevImage.style.height = '0';
+                            prevImage.style.marginBottom = '0';
+                        }
+                    }
+                    
+                    // Open new item
+                    item.classList.add('active');
+                    const image = item.querySelector('.service-image');
+                    if (image) {
+                        image.style.height = '350px';
+                        image.style.marginBottom = '24px';
+                    }
+                    activeItem = item;
+                    
+                    // Scroll into view with offset for header
+                    setTimeout(() => {
+                        const headerHeight = 86;
+                        const itemTop = item.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({
+                            top: itemTop - headerHeight - 20,
+                            behavior: 'smooth'
+                        });
+                    }, 50);
+                }
+            }
 
-                // Add click handler
+            // Setup each service item
+            serviceItems.forEach((item) => {
+                setupServiceItem(item);
+
+                // Click handler
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    if (activeItem === item) {
-                        item.classList.remove('active');
-                        activeItem = null;
-                    } else {
-                        if (activeItem) {
-                            activeItem.classList.remove('active');
-                        }
-                        
-                        setTimeout(() => {
-                            item.classList.add('active');
-                            activeItem = item;
-                            
-                            // Scroll into view if needed
-                            const itemRect = item.getBoundingClientRect();
-                            const isVisible = (itemRect.top >= 0) && 
-                                            (itemRect.bottom <= window.innerHeight);
-                            
-                            if (!isVisible) {
-                                item.scrollIntoView({ 
-                                    behavior: 'smooth', 
-                                    block: 'start',
-                                    inline: 'nearest'
-                                });
-                            }
-                        }, activeItem ? 300 : 0);
-                    }
+                    toggleItem(item);
                 });
             });
-
-            // Disable desktop functionality
-            if (typeof slideInterval !== 'undefined') {
-            clearInterval(slideInterval);
-            }
         }
     }
 
-    // Call initializeMobileLayout on page load and resize
+    // Call on load and resize
     window.addEventListener('resize', initializeMobileLayout);
     document.addEventListener('DOMContentLoaded', initializeMobileLayout);
 });

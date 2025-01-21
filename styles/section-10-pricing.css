@@ -116,33 +116,42 @@
 /* Mobile (320px to 767px) */
 @media screen and (max-width: 767px) {
   .section-10 {
-    padding: 60px 0;
+    padding: 64px 20px;
     min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .pricing-container {
-    padding: 0 24px;
+    padding: 0;
     flex-direction: column;
     gap: 40px;
     align-items: center;
     text-align: center;
+    width: 100%;
+    margin: 0 auto;
   }
 
   .pricing-header {
     width: 100%;
     gap: 16px;
     align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 
   .pricing-title {
-    font-size: 2.25em; /* 36px */
-    line-height: 42px;
+    font-size: 1.875em;
+    line-height: 34px;
+    margin: 0;
   }
 
   .pricing-subtitle {
-    font-size: 1.125em; /* 18px */
+    font-size: 1.125em;
     line-height: 24px;
-    margin-bottom: 0;
+    margin: 0;
+    max-width: 280px;
   }
 
   .pricing-button {
@@ -152,6 +161,9 @@
   .pricing-models {
     width: 100%;
     gap: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .model-card {
@@ -159,52 +171,64 @@
     max-height: none;
     padding: 24px;
     border-width: 2px;
+    width: 100%;
   }
 
   .model-title {
-    font-size: 2.25em; /* 36px */
-    line-height: 42px;
+    font-size: 2.625em;
+    line-height: 46px;
+    margin: 0;
   }
 
   .model-description {
-    font-size: 1em; /* 16px */
-    line-height: 22px;
+    font-size: 1.25em;
+    line-height: 30px;
+    margin: 0;
   }
 }
 
 /* Tablet (768px to 1023px) */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .section-10 {
-    padding: 80px 0;
+    padding: 84px 30px;
+    min-height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .pricing-container {
-    padding: 0 40px;
+    padding: 0;
     flex-direction: column;
     gap: 60px;
     align-items: center;
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
+    width: 100%;
   }
 
   .pricing-header {
     width: 100%;
     align-items: center;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
   .pricing-title {
-    font-size: 3em; /* 48px */
+    font-size: 3em;
     line-height: 56px;
     text-align: center;
     max-width: 500px;
+    margin: 0;
   }
 
   .pricing-subtitle {
-    font-size: 1.25em; /* 20px */
+    font-size: 1.25em;
     line-height: 28px;
-    margin-bottom: 0;
+    margin: 0;
     text-align: center;
     max-width: 450px;
   }
@@ -215,12 +239,17 @@
 
   .pricing-models {
     width: 100%;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 24px;
   }
 
   .model-card {
     max-width: 500px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    padding: 32px;
   }
 }
 

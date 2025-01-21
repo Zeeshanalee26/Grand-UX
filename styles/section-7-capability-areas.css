@@ -47,7 +47,6 @@
   color: var(--color-secondary);
 }
 
-/* Base button styles */
 .collaborate-button {
   background-color: var(--color-primary);
   color: var(--color-background-dark);
@@ -205,30 +204,71 @@ html {
   transform: translateY(0);
 } 
 
-/* Media queries */
+/* Mobile (0px - 767px) */
 @media screen and (max-width: 767px) {
   .section-7 {
-    padding: 64px 24px;
+    padding: 80px 20px;
+    min-height: auto;
   }
 
   .section-7-wrapper {
     flex-direction: column;
-    gap: 0;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
   }
 
   .section-7-left {
     width: 100%;
     height: auto;
     padding: 0;
+    margin: 0;
     gap: 16px;
   }
 
   .capability-title {
-    font-size: 1.125em; /* 18px */
+    font-size: 1.375em;
+    line-height: 28px;
+    color: var(--color-secondary);
   }
 
   .capability-heading {
-    font-size: 2.25em; /* 36px */
+    display: none;
+  }
+
+  .capabilities-container {
+    width: 100%;
+    min-height: auto;
+    margin-top: 24px;
+  }
+
+  .capability-group {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .capability-header {
+    font-size: 1.5em;
+    line-height: 32px;
+    padding: 24px 0;
+  }
+
+  .capability-header:hover {
+    transform: none;
+  }
+
+  .capability-item {
+    font-size: 1.125em;
+    line-height: 36px;
+    padding-left: 16px;
+  }
+
+  .capability-item:hover {
+    transform: none;
+  }
+
+  .capability-item::before {
+    width: 6px;
+    height: 6px;
   }
 
   .collaborate-button.desktop-button {
@@ -238,33 +278,17 @@ html {
   .collaborate-button.mobile-button {
     display: flex;
     width: 100%;
-    max-width: 100%;
-    padding: 24px 0;
-  }
-
-  .capabilities-container {
-    width: 100%;
-    padding-block: 40px;
-    min-height: auto;
-  }
-
-  .capability-header {
-    font-size: 1.5em; /* 24px */
-    line-height: 32px;
-    padding: 24px 0;
-  }
-
-  .capability-item {
-    font-size: 1.125em; /* 18px */
-    line-height: 36px;
-    padding-left: 16px;
+    padding: 30px 24px;
+    font-size: 1.25em;
+    line-height: 24px;
+    margin-top: 26px;
   }
 }
 
 /* Tablet (768px to 1023px) */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .section-7 {
-    padding: 60px 40px;
+    padding: 100px 40px;
   }
 
   .section-7-wrapper {
@@ -272,6 +296,50 @@ html {
     gap: 40px;
   }
 
+  .section-7-left {
+    width: 100%;
+    gap: 24px;
+  }
+
+  .capability-title {
+    font-size: 1.875em;
+    line-height: 24px;
+  }
+
+  .capability-heading {
+    font-size: 2.5em;
+    line-height: 48px;
+  }
+
+  .capabilities-container {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .capability-group {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .capability-header {
+    font-size: 1.75em;
+    line-height: 38px;
+    padding: 32px 0;
+  }
+
+  .capability-header:hover {
+    transform: none;
+  }
+
+  .capability-item {
+    font-size: 1.25em;
+    line-height: 40px;
+    padding-left: 20px;
+  }
+
+  .capability-item:hover {
+    transform: none;
+  }
+
   .collaborate-button.desktop-button {
     display: none;
   }
@@ -279,13 +347,10 @@ html {
   .collaborate-button.mobile-button {
     display: flex;
     width: 100%;
-    max-width: none;
-    margin-top: 40px;
-    padding: 24px 0;
-  }
-
-  .capabilities-container {
-    width: 100%;
+    padding: 30px 24px;
+    font-size: 1.3em;
+    line-height: 24px;
+    margin-top: 60px;
   }
 }
 
